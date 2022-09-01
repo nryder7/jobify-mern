@@ -1,3 +1,4 @@
+import { initialState } from './appContext.js';
 import {
   HIDE_ALERT,
   SHOW_ALERT,
@@ -7,6 +8,8 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  LOGOUT_USER,
+  TOGGLE_SIDEBAR,
 } from './actions';
 
 const reducer = (state, action) => {
@@ -80,6 +83,18 @@ const reducer = (state, action) => {
       alertText: action.payload,
     };
   }
+  if (action.type === TOGGLE_SIDEBAR) {
+    return {
+      ...state,
+      showSidebar: !state.showSidebar,
+    };
+  }
+  if (action.type === LOGOUT_USER) {
+    return {
+      ...initialState,
+    };
+  }
+
   throw new Error(`no matching action ${action.type}`);
 };
 

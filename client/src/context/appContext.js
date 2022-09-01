@@ -11,6 +11,8 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  LOGOUT_USER,
+  TOGGLE_SIDEBAR,
 } from './actions';
 
 const initialState = {
@@ -18,11 +20,11 @@ const initialState = {
   alertText: '',
   alertType: '',
   alertVisible: false,
+  showSidebar: false,
   user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
-  userLocation: localStorage.getItem('userLocation') || '',
-  jobLocation: localStorage.getItem('jobLocation') || '',
-  //   alert: { show: true, type: 'danger', msg: 'enter value' },
+  userLocation: localStorage.getItem('userLocation') || null,
+  jobLocation: localStorage.getItem('jobLocation') || null,
 };
 
 const AppContext = React.createContext();
@@ -59,6 +61,10 @@ const AppProvider = ({ children }) => {
     }, 2500);
   };
 
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR });
+  };
+
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
@@ -91,9 +97,22 @@ const AppProvider = ({ children }) => {
     }, 1500);
   };
 
+  const logoutUser = () => {
+    removeLocalStorage();
+    dispatch({ type: LOGOUT_USER });
+  };
+
   return (
     <AppContext.Provider
-      value={{ ...state, hideAlert, showAlert, loginUser, registerUser }}
+      value={{
+        ...state,
+        hideAlert,
+        showAlert,
+        loginUser,
+        registerUser,
+        toggleSidebar,
+        logoutUser,
+      }}
     >
       {children}
     </AppContext.Provider>

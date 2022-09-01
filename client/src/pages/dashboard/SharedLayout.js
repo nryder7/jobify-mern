@@ -1,11 +1,20 @@
-import { Outlet, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Outlet, Link } from 'react-router-dom';
+import { SmallSidebar, BigSidebar, Navbar } from '../../components/index.js';
 
 const SharedLayout = () => {
   return (
     <Wrapper>
-      <div>shared</div>
-      <Outlet />
+      <main className='dashboard'>
+        <SmallSidebar />
+        <BigSidebar />
+        <div>
+          <Navbar />
+          <div className='dashboard-page'>
+            <Outlet />
+          </div>
+        </div>
+      </main>
     </Wrapper>
   );
 };

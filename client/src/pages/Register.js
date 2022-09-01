@@ -5,9 +5,9 @@ import { useAppContext } from '../context/appContext';
 import { useNavigate } from 'react-router-dom';
 
 const initialState = {
-  email: 'bob@gmail.com',
+  email: '',
   name: '',
-  password: 'password123',
+  password: '',
   isMember: false,
 };
 

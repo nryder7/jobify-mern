@@ -1,4 +1,26 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { useAppContext } from '../context/appContext';
+import { Logo, NavLinks } from './index.js';
+
+const BigSidebar = () => {
+  const { showSidebar } = useAppContext();
+  return (
+    <Wrapper>
+      <div
+        className={
+          showSidebar ? 'sidebar-container' : 'show-sidebar sidebar-container'
+        }
+      >
+        <div className='content'>
+          <header>
+            <Logo />
+          </header>
+          <NavLinks />
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.aside`
   display: none;
@@ -62,5 +84,6 @@ const Wrapper = styled.aside`
       color: var(--primary-500);
     }
   }
-`
-export default Wrapper
+`;
+
+export default BigSidebar;
