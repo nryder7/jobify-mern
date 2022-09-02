@@ -14,6 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 app.use(express.json());
 
+import authUserMiddleware from './middleware/auth.js';
 import notFoundMiddleware from './middleware/not-found.js';
 import errorHandlerMiddleware from './middleware/error-handler.js';
 
@@ -22,7 +23,7 @@ import authRouter from './routes/authRoutes.js';
 import jobsRouter from './routes/jobsRoutes.js';
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/jobs', jobsRouter);
+app.use('/api/v1/jobs', authUserMiddleware, jobsRouter);
 
 app.get('/api/v1', (req, res) => {
   res.json({ msg: 'hello' });

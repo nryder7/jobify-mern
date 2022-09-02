@@ -1,8 +1,9 @@
-const FormRow = ({ type, name, value, handleChange, labelText }) => {
+const FormRow = ({ type, name, value, handleChange }) => {
+  const labelText = name.split(/(?=[A-Z])/).join(' ');
   return (
     <div className='form-row'>
       <label className='form-label' htmlFor={name}>
-        {labelText || name}
+        {labelText}
       </label>
       <input
         type={type}

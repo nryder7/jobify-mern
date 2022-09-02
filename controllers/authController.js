@@ -47,7 +47,30 @@ const login = async (req, res) => {
   });
 };
 const update = async (req, res) => {
-  res.send('update');
+  const { name, lastName, email, location } = req.body;
+  if (!email || !name) {
+    throw new BadRequestError('Name and email are required');
+  }
+  const user = await User.findOne({ _id: req.user.userId });
+  if (!user) {
+    throw new BadRequestError('Something went wrong');
+  }
+
+  if (
+    user.name === name &&
+    user.lastName === lastName &&
+    user.email === email &&
+    user.location === location
+  ) {
+    throw new BadRequestError('Nothing changed...');
+  }
+  user.name = name || user.name;
+  user.lastName = lastName;
+  user.email = email || user.email;
+  user.location = location;
+  await user.save();
+  const token = user.createJWT();
+  res.json({ token, user: { name, lastName, email, location } });
 };
 
 export { register, login, update };

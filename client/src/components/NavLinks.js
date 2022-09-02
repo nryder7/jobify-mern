@@ -4,7 +4,7 @@ import { useAppContext } from '../context/appContext.js';
 import links from '../utils/links.js';
 import styled from 'styled-components';
 
-const NavLinks = () => {
+const NavLinks = ({ toggle }) => {
   const { toggleSidebar } = useAppContext();
   return (
     <Wrapper className='nav-links'>
@@ -17,7 +17,7 @@ const NavLinks = () => {
             }
             to={path}
             key={id}
-            onClick={toggleSidebar}
+            onClick={toggle ? toggleSidebar : null}
           >
             <span className='icon'>{icon}</span>
             {text}

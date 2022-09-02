@@ -5,14 +5,17 @@ import reducer from './reducer';
 import {
   HIDE_ALERT,
   SHOW_ALERT,
+  TOGGLE_SIDEBAR,
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
   LOGOUT_USER,
-  TOGGLE_SIDEBAR,
 } from './actions';
 
 const initialState = {
@@ -23,7 +26,7 @@ const initialState = {
   showSidebar: false,
   user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
-  userLocation: localStorage.getItem('userLocation') || null,
+  userLocation: localStorage.getItem('userLocation') || 'my city',
   jobLocation: localStorage.getItem('jobLocation') || null,
 };
 
@@ -102,6 +105,25 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LOGOUT_USER });
   };
 
+  const updateUser = async (currentUser) => {
+    dispatch({ type: UPDATE_USER_BEGIN });
+    try {
+      const { data } = await axios.patch('api/v1/auth/update', currentUser, {
+        headers: { Authorization: `Bearer ${state.token}` },
+      });
+      dispatch({ type: UPDATE_USER_SUCCESS, payload: data });
+      setLocalStorage(data);
+    } catch (error) {
+      dispatch({
+        type: UPDATE_USER_ERROR,
+        payload: error.response.data.msg,
+      });
+    }
+    setTimeout(() => {
+      hideAlert();
+    }, 1500);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -112,6 +134,7 @@ const AppProvider = ({ children }) => {
         registerUser,
         toggleSidebar,
         logoutUser,
+        updateUser,
       }}
     >
       {children}
