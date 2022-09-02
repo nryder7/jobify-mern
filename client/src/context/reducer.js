@@ -13,6 +13,11 @@ import {
   UPDATE_USER_ERROR,
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
+  CREATE_JOB_BEGIN,
+  CREATE_JOB_ERROR,
+  CREATE_JOB_SUCCESS,
+  HANDLE_CHANGE_FORM,
+  HANDLE_CLEAR_FORM,
 } from './actions';
 
 const reducer = (state, action) => {
@@ -96,14 +101,14 @@ const reducer = (state, action) => {
     const { user, token, location } = action.payload;
     return {
       ...state,
+      user,
+      token,
       isLoading: false,
       alertVisible: true,
       alertType: 'success',
       alertText: 'Update successful',
       userLocation: location || 'my city',
       jobLocation: location || 'my city',
-      user,
-      token,
     };
   }
   if (action.type === UPDATE_USER_ERROR) {
@@ -124,6 +129,45 @@ const reducer = (state, action) => {
   if (action.type === LOGOUT_USER) {
     return {
       ...initialState,
+    };
+  }
+
+  if (action.type === CREATE_JOB_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+  if (action.type === CREATE_JOB_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      alertVisible: true,
+      alertType: 'danger',
+      alertText: action.payload,
+    };
+  }
+  if (action.type === CREATE_JOB_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      alertVisible: true,
+      alertType: 'success',
+      alertText: 'Job created',
+    };
+  }
+  if (action.type === HANDLE_CHANGE_FORM) {
+    const { name, value } = action.payload;
+    return {
+      ...state,
+      [name]: value,
+    };
+  }
+  if (action.type === HANDLE_CLEAR_FORM) {
+    return {
+      ...state,
+      position: '',
+      company: '',
+      officeLocation: '',
+      jobIsEdit: false,
+      jobEditId: '',
     };
   }
 

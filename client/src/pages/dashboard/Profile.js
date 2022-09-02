@@ -1,7 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import { FormRow, Alert } from '../../components';
-import { useAppContext } from '../../context/appContext';
 import { useState } from 'react';
+import styled from 'styled-components';
+import { Alert, FormRow } from '../../components';
+import { useAppContext } from '../../context/appContext';
 
 const Profile = () => {
   const { user, userLocation, updateUser, isLoading, alertVisible, showAlert } =
@@ -34,15 +34,12 @@ const Profile = () => {
       location,
     });
   };
+
   return (
     <Wrapper>
-      <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <h3>profile</h3>
-        {showAlert && <Alert />}
+        {alertVisible && <Alert />}
         <div className='form-center'>
           {Object.entries(state).map((item, index) => {
             return (
