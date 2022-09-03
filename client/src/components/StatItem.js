@@ -1,5 +1,16 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
+const StatItem = ({ bcg, color, count, icon, id, status, title }) => {
+  return (
+    <Wrapper color={color} bcg={bcg}>
+      <header>
+        <span className='count'>{count}</span>
+        <span className='icon'>{icon}</span>
+      </header>
+      <h5 className='title'>{title}</h5>
+    </Wrapper>
+  );
+};
 const Wrapper = styled.article`
   padding: 2rem;
   background: var(--white);
@@ -36,6 +47,6 @@ const Wrapper = styled.article`
       color: ${(props) => props.color};
     }
   }
-`
+`;
 
-export default Wrapper
+export default StatItem;

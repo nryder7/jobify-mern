@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import moment from 'moment';
 import Job from '../models/Job.js';
 import { StatusCodes } from 'http-status-codes';
 import checkPermission from '../utils/checkPermissions.js';
@@ -69,7 +70,47 @@ const showStats = async (req, res) => {
     { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: '$status', count: { $sum: 1 } } },
   ]);
-  res.status(StatusCodes.OK).json({ stats, hits: stats.length });
+  stats = stats.reduce(
+    (acc, curr) => {
+      const { _id: title, count } = curr;
+      acc[title] = count;
+      return acc;
+    },
+    //set default to zero. will not exist if not found with aggregate
+    { pending: 0, interview: 0, declined: 0 }
+  );
+
+  let monthlyApplications = await Job.aggregate([
+    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
+    {
+      $group: {
+        _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+        count: { $sum: 1 },
+      },
+    },
+    //moment 0 index
+    // month 0-11 vs mongo 1-12
+    //sort by last 6 months
+    { $sort: { '_id.year': -1, '_id.month': -1 } },
+    { $limit: 6 },
+  ]);
+
+  monthlyApplications = monthlyApplications
+    .map((item) => {
+      const {
+        _id: { year, month },
+        count,
+      } = item;
+
+      const date = moment()
+        .month(month - 1)
+        .year(year)
+        .format('MMM Y');
+      return { date, count };
+    })
+    .reverse();
+  //reverse so charts can read oldest first
+  res.status(StatusCodes.OK).json({ stats, monthlyApplications });
 };
 
 export { showStats, getAllJobs, createJob, modifyJob, deleteJob };

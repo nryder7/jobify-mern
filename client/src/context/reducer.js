@@ -20,6 +20,8 @@ import {
   DELETE_JOB_BEGIN,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
   HANDLE_CHANGE_FORM,
   HANDLE_CLEAR_FORM,
 } from './actions';
@@ -200,6 +202,7 @@ const reducer = (state, action) => {
       type: jobType,
       status: jobStatus,
     } = job;
+
     return {
       ...state,
       jobIsEdit: true,
@@ -213,6 +216,18 @@ const reducer = (state, action) => {
   }
   if (action.type === DELETE_JOB_BEGIN) {
     return { ...state, isLoading: true };
+  }
+  if (action.type === SHOW_STATS_BEGIN) {
+    return { ...state, isLoading: true, showAlert: false };
+  }
+  if (action.type === SHOW_STATS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: false,
+      stats: action.payload.stats,
+      monthlyApplications: action.payload.monthlyApplications,
+    };
   }
   throw new Error(`no matching action ${action.type}`);
 };

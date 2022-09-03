@@ -1,5 +1,8 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
+const ChartsContainer = () => {
+  return <div>ChartsContainer</div>;
+};
 const Wrapper = styled.section`
   margin-top: 4rem;
   text-align: center;
@@ -15,6 +18,6 @@ const Wrapper = styled.section`
     text-align: center;
     margin-bottom: 0.75rem;
   }
-`
+`;
 
-export default Wrapper
+export default ChartsContainer;

@@ -23,6 +23,8 @@ import {
   DELETE_JOB_BEGIN,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
   LOGOUT_USER,
   HANDLE_CHANGE_FORM,
   HANDLE_CLEAR_FORM,
@@ -245,6 +247,15 @@ const AppProvider = ({ children }) => {
       logoutUser();
     }
   };
+  const showStats = async () => {
+    dispatch({ type: SHOW_STATS_BEGIN });
+    try {
+      const { data } = await authFetch('/jobs/stats');
+      dispatch({ type: SHOW_STATS_SUCCESS, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -263,6 +274,7 @@ const AppProvider = ({ children }) => {
         clearForm,
         setIsEditJob,
         deleteJob,
+        showStats,
       }}
     >
       {children}
