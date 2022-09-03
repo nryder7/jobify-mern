@@ -1,4 +1,17 @@
+import { useEffect } from 'react';
+import { JobsContainer, SearchContainer } from '../../components';
+import { useAppContext } from '../../context/appContext';
+
 const AllJobs = () => {
-  return <div>AllJobs</div>;
+  // const { getJobs, jobs, totalJobs, numOfpages } = useAppContext();
+  // useEffect(() => {
+  //   getJobs();
+  // }, []);
+  return (
+    <>
+      <SearchContainer />
+      <JobsContainer />
+    </>
+  );
 };
 export default AllJobs;

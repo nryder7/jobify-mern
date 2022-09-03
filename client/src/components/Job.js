@@ -1,4 +1,63 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import moment from 'moment';
+import { FaBriefcase, FaCalendarAlt, FaLocationArrow } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { useAppContext } from '../context/appContext';
+import JobInfo from './JobInfo';
+
+const Job = ({
+  company,
+  position,
+  createdAt,
+  _id: id,
+  officeLocation,
+  type,
+  status,
+}) => {
+  const { setIsEditJob, deleteJob } = useAppContext();
+
+  let date = moment(createdAt);
+  date = date.format('MMM Do, YYYY');
+  return (
+    <Wrapper>
+      <header>
+        <div className='main-icon'>{company.charAt(0)}</div>
+        <div className='info'>
+          <h5>{position}</h5>
+          <p>{company}</p>
+        </div>
+      </header>
+      <div className='content'>
+        <div className='content-center'>
+          <JobInfo icon={<FaLocationArrow />} text={officeLocation} />
+          <JobInfo icon={<FaBriefcase />} text={type} />
+          <JobInfo icon={<FaCalendarAlt />} text={date} />
+        </div>
+        <div className={`status ${status}`}>{status}</div>
+      </div>
+      <footer>
+        <div className='action'>
+          <Link
+            to='/add-job'
+            className='btn edit-btn'
+            onClick={() => setIsEditJob(id)}
+          >
+            edit
+          </Link>
+          <button
+            className='btn delete-btn'
+            type='button'
+            onClick={() => {
+              deleteJob(id);
+            }}
+          >
+            delete
+          </button>
+        </div>
+      </footer>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.article`
   background: var(--white);
@@ -81,6 +140,8 @@ const Wrapper = styled.article`
   }
   footer {
     margin-top: 1rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1.5rem;
   }
   .edit-btn,
   .delete-btn {
@@ -100,6 +161,6 @@ const Wrapper = styled.article`
   &:hover .actions {
     visibility: visible;
   }
-`
+`;
 
-export default Wrapper
+export default Job;

@@ -19,6 +19,10 @@ import {
   CREATE_JOB_BEGIN,
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
+  SET_EDIT_JOB,
+  DELETE_JOB_BEGIN,
+  GET_JOBS_BEGIN,
+  GET_JOBS_SUCCESS,
   LOGOUT_USER,
   HANDLE_CHANGE_FORM,
   HANDLE_CLEAR_FORM,
@@ -33,8 +37,6 @@ const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
   userLocation: localStorage.getItem('userLocation') || 'my city',
-  // jobIsEdit: true,
-  // jobEditId: '63128c1efd16401691d8d8d9',
   jobIsEdit: false,
   jobEditId: '',
   position: '',
@@ -43,6 +45,10 @@ const initialState = {
   jobSetting: localStorage.getItem('jobSetting') || 'office',
   jobType: localStorage.getItem('jobType') || 'full-time',
   jobStatus: localStorage.getItem('jobStatus') || 'pending',
+  jobs: [],
+  hits: 0,
+  numOfPages: 1,
+  page: 1,
 };
 
 const AppContext = React.createContext();
@@ -120,6 +126,7 @@ const AppProvider = ({ children }) => {
     }
     hideAlert();
   };
+
   const loginUser = async (currentUser) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     try {
@@ -133,7 +140,6 @@ const AppProvider = ({ children }) => {
       });
       removeLocalStorage();
     }
-
     hideAlert();
   };
 
@@ -169,7 +175,6 @@ const AppProvider = ({ children }) => {
       jobType,
     } = state;
 
-    dispatch({ type: CREATE_JOB_BEGIN });
     const job = {
       position,
       company,
@@ -178,16 +183,21 @@ const AppProvider = ({ children }) => {
       jobSetting,
       jobType,
     };
+
+    dispatch({ type: CREATE_JOB_BEGIN });
+
     try {
       if (state.jobIsEdit) {
-        const { data } = await authFetch.patch(`/jobs/${state.jobEditId}`, job);
-        dispatch({ type: CREATE_JOB_SUCCESS, payload: data });
+        await authFetch.patch(`/jobs/${state.jobEditId}`, job);
+        dispatch({ type: CREATE_JOB_SUCCESS, payload: { msg: 'Job Updated' } });
+        dispatch({ type: HANDLE_CLEAR_FORM });
       } else {
-        const { data } = await authFetch.post(`/jobs`, job);
-        dispatch({ type: CREATE_JOB_SUCCESS, payload: data });
+        await authFetch.post(`/jobs`, job);
+        dispatch({ type: CREATE_JOB_SUCCESS, payload: { msg: 'Job Created' } });
+        dispatch({ type: HANDLE_CLEAR_FORM });
       }
     } catch (error) {
-      console.log(error.response.data.msg);
+      if (error.response.status === 401) return;
       dispatch({ type: CREATE_JOB_ERROR, payload: error.response.data.msg });
     }
     hideAlert();
@@ -205,6 +215,37 @@ const AppProvider = ({ children }) => {
     });
   };
 
+  const getJobs = async () => {
+    let url = `/jobs`;
+    dispatch({ type: GET_JOBS_BEGIN });
+    try {
+      const { data } = await authFetch(`${url}`);
+      const { jobs, hits, numOfPages } = data;
+      dispatch({
+        type: GET_JOBS_SUCCESS,
+        payload: { jobs, hits, numOfPages },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    hideAlert();
+  };
+
+  const setIsEditJob = (id) => {
+    dispatch({ type: SET_EDIT_JOB, payload: { id } });
+  };
+
+  const deleteJob = async (id) => {
+    dispatch({ type: DELETE_JOB_BEGIN });
+    let url = `/jobs/${id}`;
+    try {
+      await authFetch.delete(`${url}`);
+      getJobs();
+    } catch (error) {
+      logoutUser();
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -218,7 +259,10 @@ const AppProvider = ({ children }) => {
         logoutUser,
         updateUser,
         createJob,
+        getJobs,
         clearForm,
+        setIsEditJob,
+        deleteJob,
       }}
     >
       {children}

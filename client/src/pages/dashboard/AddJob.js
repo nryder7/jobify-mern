@@ -6,18 +6,18 @@ import jobFormOptions from '../../utils/form';
 
 const AddJob = () => {
   const {
+    alertVisible,
+    clearForm,
+    company,
+    createJob,
     handleChange,
     isLoading,
-    alertVisible,
-    createJob,
     jobIsEdit,
-    position,
-    company,
-    officeLocation,
     jobStatus,
     jobSetting,
     jobType,
-    clearForm,
+    officeLocation,
+    position,
   } = useAppContext();
 
   const job = {

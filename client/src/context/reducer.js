@@ -16,6 +16,10 @@ import {
   CREATE_JOB_BEGIN,
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
+  SET_EDIT_JOB,
+  DELETE_JOB_BEGIN,
+  GET_JOBS_BEGIN,
+  GET_JOBS_SUCCESS,
   HANDLE_CHANGE_FORM,
   HANDLE_CLEAR_FORM,
 } from './actions';
@@ -150,7 +154,7 @@ const reducer = (state, action) => {
       isLoading: false,
       alertVisible: true,
       alertType: 'success',
-      alertText: 'Job created',
+      alertText: action.payload.msg,
     };
   }
   if (action.type === HANDLE_CHANGE_FORM) {
@@ -170,7 +174,46 @@ const reducer = (state, action) => {
       jobEditId: '',
     };
   }
-
+  if (action.type === GET_JOBS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+      alertVisible: false,
+    };
+  }
+  if (action.type === GET_JOBS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      jobs: action.payload.jobs,
+      totalJobs: action.payload.hits,
+      numOfPages: action.payload.numOfPages,
+    };
+  }
+  if (action.type === SET_EDIT_JOB) {
+    const { id } = action.payload;
+    const job = state.jobs.find((job) => job._id === id);
+    const {
+      company,
+      position,
+      officeLocation,
+      type: jobType,
+      status: jobStatus,
+    } = job;
+    return {
+      ...state,
+      jobIsEdit: true,
+      jobEditId: id,
+      company,
+      position,
+      officeLocation,
+      jobType,
+      jobStatus,
+    };
+  }
+  if (action.type === DELETE_JOB_BEGIN) {
+    return { ...state, isLoading: true };
+  }
   throw new Error(`no matching action ${action.type}`);
 };
 
