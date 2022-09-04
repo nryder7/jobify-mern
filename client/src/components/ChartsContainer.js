@@ -1,18 +1,41 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
+import BarChart from './BarChart';
+import AreaChart from './AreaChart';
+import { useAppContext } from '../context/appContext';
 
 const ChartsContainer = () => {
-  return <div>ChartsContainer</div>;
+  const [barChart, setBarChart] = useState(true);
+  const { monthlyApplications: data } = useAppContext();
+  return (
+    <Wrapper>
+      <h4>Monthly Applications</h4>
+      <button
+        className='btn '
+        onClick={() => {
+          setBarChart(!barChart);
+        }}
+      >
+        {barChart ? 'see area chart' : 'see bar chart'}
+      </button>
+      {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}
+    </Wrapper>
+  );
 };
 const Wrapper = styled.section`
   margin-top: 4rem;
   text-align: center;
   button {
-    background: transparent;
+    background: var(--white);
+    /* background: transparent; */
     border-color: transparent;
     text-transform: capitalize;
     color: var(--primary-500);
     font-size: 1.25rem;
     cursor: pointer;
+  }
+  button:hover {
+    color: var(--white);
   }
   h4 {
     text-align: center;
