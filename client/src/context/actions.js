@@ -36,3 +36,6 @@ export const HANDLE_CLEAR_FORM = 'HANDLE_CLEAR_FORM';
 
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const SET_SEARCH = 'SET_SEARCH';
+
+export const CHANGE_PAGE = 'CHANGE_PAGE';

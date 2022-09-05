@@ -28,6 +28,8 @@ import {
   LOGOUT_USER,
   HANDLE_CHANGE_FORM,
   HANDLE_CLEAR_FORM,
+  SET_SEARCH,
+  CHANGE_PAGE,
 } from './actions';
 
 const initialState = {
@@ -51,6 +53,12 @@ const initialState = {
   hits: 0,
   numOfPages: 1,
   page: 1,
+  isSearch: false,
+  search: '',
+  searchStatus: 'all',
+  searchType: 'all',
+  sort: 'created.new',
+  sortOptions: ['created.new', 'created.old', 'position.az', 'position.za'],
 };
 
 const AppContext = React.createContext();
@@ -206,9 +214,10 @@ const AppProvider = ({ children }) => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     dispatch({
       type: HANDLE_CHANGE_FORM,
-      payload: { name: e.target.name, value: e.target.value },
+      payload: { name, value },
     });
   };
   const clearForm = () => {
@@ -218,7 +227,13 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    let url = `/jobs`;
+    let url = `/jobs/?page=${state.page}`;
+    if (state.isSearch) {
+      url =
+        url +
+        `&company=${state.company}&position=${state.position}&officeLocation=${state.officeLocation}&jobSetting=${state.jobSetting}&jobType=${state.jobType}&status=${state.jobStatus}`;
+    }
+
     dispatch({ type: GET_JOBS_BEGIN });
     try {
       const { data } = await authFetch(`${url}`);
@@ -228,7 +243,7 @@ const AppProvider = ({ children }) => {
         payload: { jobs, hits, numOfPages },
       });
     } catch (error) {
-      console.log(error);
+      logoutUser();
     }
     hideAlert();
   };
@@ -253,8 +268,18 @@ const AppProvider = ({ children }) => {
       const { data } = await authFetch('/jobs/stats');
       dispatch({ type: SHOW_STATS_SUCCESS, payload: data });
     } catch (error) {
-      console.log(error);
+      logoutUser();
     }
+  };
+  const resetFilters = () => {
+    console.log('reset filters');
+  };
+  const setIsSearch = (flag) => {
+    dispatch({ type: SET_SEARCH, payload: flag });
+  };
+
+  const setPage = (page) => {
+    dispatch({ type: CHANGE_PAGE, payload: page });
   };
 
   return (
@@ -275,6 +300,9 @@ const AppProvider = ({ children }) => {
         setIsEditJob,
         deleteJob,
         showStats,
+        resetFilters,
+        setIsSearch,
+        setPage,
       }}
     >
       {children}

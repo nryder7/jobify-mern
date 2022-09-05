@@ -17,6 +17,7 @@ import {
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
   SET_EDIT_JOB,
+  SET_SEARCH,
   DELETE_JOB_BEGIN,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
@@ -24,6 +25,7 @@ import {
   SHOW_STATS_SUCCESS,
   HANDLE_CHANGE_FORM,
   HANDLE_CLEAR_FORM,
+  CHANGE_PAGE,
 } from './actions';
 
 const reducer = (state, action) => {
@@ -164,6 +166,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       [name]: value,
+      page: 1,
     };
   }
   if (action.type === HANDLE_CLEAR_FORM) {
@@ -174,6 +177,9 @@ const reducer = (state, action) => {
       officeLocation: '',
       jobIsEdit: false,
       jobEditId: '',
+      jobSetting: '',
+      jobStatus: '',
+      jobType: '',
     };
   }
   if (action.type === GET_JOBS_BEGIN) {
@@ -192,6 +198,13 @@ const reducer = (state, action) => {
       numOfPages: action.payload.numOfPages,
     };
   }
+  if (action.type === SET_SEARCH) {
+    return {
+      ...state,
+      isSearch: action.payload,
+    };
+  }
+
   if (action.type === SET_EDIT_JOB) {
     const { id } = action.payload;
     const job = state.jobs.find((job) => job._id === id);
@@ -201,6 +214,7 @@ const reducer = (state, action) => {
       officeLocation,
       type: jobType,
       status: jobStatus,
+      setting: jobSetting,
     } = job;
 
     return {
@@ -211,6 +225,7 @@ const reducer = (state, action) => {
       position,
       officeLocation,
       jobType,
+      jobSetting,
       jobStatus,
     };
   }
@@ -228,6 +243,9 @@ const reducer = (state, action) => {
       stats: action.payload.stats,
       monthlyApplications: action.payload.monthlyApplications,
     };
+  }
+  if (action.type === CHANGE_PAGE) {
+    return { ...state, page: action.payload };
   }
   throw new Error(`no matching action ${action.type}`);
 };

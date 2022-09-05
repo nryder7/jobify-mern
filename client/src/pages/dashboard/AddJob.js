@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { MdCleaningServices } from 'react-icons/md';
 import styled from 'styled-components';
 import { Alert, FormRow } from '../../components';
@@ -37,6 +38,13 @@ const AddJob = () => {
     e.preventDefault();
     clearForm();
   };
+  const { setIsSearch } = useAppContext();
+  useEffect(() => {
+    if (!jobIsEdit) {
+      clearForm();
+    }
+    setIsSearch(false);
+  }, []);
 
   return (
     <Wrapper>

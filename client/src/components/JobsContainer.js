@@ -3,13 +3,27 @@ import styled from 'styled-components';
 import { useAppContext } from '../context/appContext';
 import Job from './Job';
 import Loading from './Loading';
+import PageBtnContainer from './PageBtnContainer';
 
 const JobsContainer = () => {
-  const { getJobs, jobs, isLoading, page, totalJobs } = useAppContext();
+  const {
+    getJobs,
+    jobs,
+    isLoading,
+    numOfPages,
+    page,
+    totalJobs,
+    company,
+    position,
+    officeLocation,
+    jobSetting,
+    jobType,
+    jobStatus,
+  } = useAppContext();
 
   useEffect(() => {
     getJobs();
-  }, []);
+  }, [company, position, officeLocation, jobSetting, jobType, jobStatus, page]);
 
   if (isLoading) {
     return <Loading center />;
@@ -27,6 +41,7 @@ const JobsContainer = () => {
           return <Job key={job._id} {...job} />;
         })}
       </div>
+      {numOfPages > 0 && <PageBtnContainer />}
     </Wrapper>
   );
 };

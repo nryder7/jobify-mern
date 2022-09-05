@@ -8,6 +8,7 @@ import {
   NotFoundError,
   UnauthenticatedError,
 } from '../errors/index.js';
+import { query } from 'express';
 
 const createJob = async (req, res) => {
   const { position, company } = req.body;
@@ -19,11 +20,69 @@ const createJob = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ job });
 };
 const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.userId });
+  const {
+    company,
+    officeLocation,
+    position,
+    jobSetting,
+    search,
+    status,
+    jobType,
+    sort,
+    page = 1,
+    limit = 10,
+  } = req.query;
+
+  const skip = (Number(page) - 1) * Number(limit);
+
+  const queryObject = {
+    createdBy: req.user.userId,
+  };
+
+  if (company) {
+    queryObject.company = { $regex: company, $options: 'i' };
+  }
+  if (position) {
+    queryObject.position = { $regex: position, $options: 'i' };
+  }
+  if (officeLocation) {
+    queryObject.officeLocation = { $regex: officeLocation, $options: 'i' };
+  }
+
+  if (status && status !== 'all') {
+    queryObject.status = status;
+  }
+  if (jobType && jobType !== 'all') {
+    queryObject.type = jobType;
+  }
+  if (jobSetting && jobSetting !== 'all') {
+    queryObject.setting = jobSetting;
+  }
+
+  let result = Job.find(queryObject);
+
+  if (sort === 'created.new') {
+    result = result.sort('-createdAt');
+  }
+  if (sort === 'created.old') {
+    result = result.sort('createdAt');
+  }
+  if (sort === 'position.az') {
+    result = result.sort('position');
+  }
+  if (sort === 'position.za') {
+    result = result.sort('-position');
+  }
+
+  result = result.skip(skip).limit(limit);
+  const jobs = await result;
+
+  const hits = await Job.countDocuments(queryObject);
+  const numOfPages = Math.ceil(hits / limit);
   if (!jobs) {
     throw new BadRequestError('No jobs found');
   }
-  res.status(StatusCodes.OK).json({ jobs, hits: jobs.length, numOfPages: 1 });
+  res.status(StatusCodes.OK).json({ jobs, hits, numOfPages });
 };
 const deleteJob = async (req, res) => {
   const job = await Job.findOne({

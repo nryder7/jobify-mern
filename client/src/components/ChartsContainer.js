@@ -26,16 +26,15 @@ const Wrapper = styled.section`
   margin-top: 4rem;
   text-align: center;
   button {
-    background: var(--white);
-    /* background: transparent; */
-    border-color: transparent;
+    background: transparent;
+    /* border-color: transparent; */
     text-transform: capitalize;
-    color: var(--primary-500);
+    color: var(--primary-600);
     font-size: 1.25rem;
     cursor: pointer;
   }
   button:hover {
-    color: var(--white);
+    color: var(--primary-100);
   }
   h4 {
     text-align: center;
