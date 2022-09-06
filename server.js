@@ -20,12 +20,12 @@ import connectDB from './db/connect.js';
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
+
+app.use(express.static(path.resolve(__dirname, './client/build')));
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
-
-app.use(express.static(path.resolve(__dirname, './client/build')));
 
 import authUserMiddleware from './middleware/auth.js';
 import notFoundMiddleware from './middleware/not-found.js';
