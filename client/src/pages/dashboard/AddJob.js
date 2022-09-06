@@ -87,6 +87,7 @@ const AddJob = () => {
 export default AddJob;
 
 const Wrapper = styled.section`
+  margin: 3rem auto;
   border-radius: var(--borderRadius);
   width: 100%;
   background: var(--white);
@@ -94,6 +95,7 @@ const Wrapper = styled.section`
   box-shadow: var(--shadow-2);
   h3 {
     margin-top: 0;
+    font-size: 1.75rem;
   }
   .form {
     margin: 0;
@@ -131,17 +133,20 @@ const Wrapper = styled.section`
   .clear-btn:hover {
     background: var(--black);
   }
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .form-center {
       grid-template-columns: 1fr 1fr;
       align-items: center;
       column-gap: 1rem;
     }
     .btn-container {
-      margin-top: 0;
+      margin-top: 0.25rem;
     }
   }
-  @media (min-width: 1120px) {
+  @media (min-width: 992px) {
+    margin-top: 0;
+  }
+  @media (min-width: 1200px) {
     .form-center {
       grid-template-columns: 1fr 1fr 1fr;
     }

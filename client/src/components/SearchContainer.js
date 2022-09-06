@@ -52,7 +52,7 @@ const SearchContainer = () => {
           e.preventDefault();
         }}
       >
-        <h4>search form</h4>
+        <h3>search form</h3>
         <div className='form-center'>
           {searchFormOptions.map((item) => {
             return (
@@ -78,6 +78,7 @@ const SearchContainer = () => {
 };
 
 const Wrapper = styled.section`
+  /* height: calc(100vh - var(--nav-height)); */
   .form {
     width: 100%;
     max-width: 100%;
@@ -99,6 +100,9 @@ const Wrapper = styled.section`
   h5 {
     font-weight: 700;
   }
+  h3 {
+    font-size: 1.75rem;
+  }
   .btn-block {
     align-self: end;
     margin-top: 1rem;
@@ -109,6 +113,11 @@ const Wrapper = styled.section`
     }
   }
   @media (min-width: 992px) {
+    .form {
+      margin-top: 0;
+    }
+  }
+  @media (min-width: 1200px) {
     .form-center {
       grid-template-columns: 1fr 1fr 1fr;
     }

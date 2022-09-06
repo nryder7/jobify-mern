@@ -35,6 +35,7 @@ const Wrapper = styled.section`
     }
     .dashboard-page {
       width: 90%;
+      padding: 0;
       padding: 2rem 0;
     }
   }

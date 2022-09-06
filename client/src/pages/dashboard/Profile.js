@@ -37,7 +37,7 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <h3>profile</h3>
         {alertVisible && <Alert />}
         <div className='form-center'>
@@ -60,6 +60,7 @@ const Profile = () => {
   );
 };
 const Wrapper = styled.section`
+  margin: 3rem auto;
   border-radius: var(--borderRadius);
   width: 100%;
   background: var(--white);
@@ -67,6 +68,7 @@ const Wrapper = styled.section`
   box-shadow: var(--shadow-2);
   h3 {
     margin-top: 0;
+    font-size: 1.75rem;
   }
   .form {
     margin: 0;
@@ -104,7 +106,7 @@ const Wrapper = styled.section`
   .clear-btn:hover {
     background: var(--black);
   }
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .form-center {
       grid-template-columns: 1fr 1fr;
       align-items: center;
@@ -113,6 +115,9 @@ const Wrapper = styled.section`
     .btn-container {
       margin-top: 0;
     }
+  }
+  @media (min-width: 992px) {
+    margin-top: 0;
   }
   @media (min-width: 1120px) {
     .form-center {
