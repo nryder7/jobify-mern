@@ -79,6 +79,7 @@ const SearchContainer = () => {
 
 const Wrapper = styled.section`
   /* height: calc(100vh - var(--nav-height)); */
+
   .form {
     width: 100%;
     max-width: 100%;
@@ -122,7 +123,7 @@ const Wrapper = styled.section`
       grid-template-columns: 1fr 1fr 1fr;
     }
     .btn-block {
-      margin-top: 0;
+      /* margin-top: 0; */
     }
   }
 `;

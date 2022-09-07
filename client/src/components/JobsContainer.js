@@ -62,7 +62,7 @@ const Wrapper = styled.section`
     .jobs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 2.5rem;
     }
   }
 `;
