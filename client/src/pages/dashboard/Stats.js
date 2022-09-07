@@ -11,7 +11,7 @@ const Stats = () => {
   }
   return (
     <>
-      <StatsContainer style={{ maxWidth: '600px' }} />
+      <StatsContainer />
       {monthlyApplications?.length > 0 && <ChartsContainer />}
     </>
   );

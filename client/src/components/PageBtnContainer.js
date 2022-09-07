@@ -4,6 +4,7 @@ import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
 
 const PageBtnContainer = ({ handleClick }) => {
   const { numOfPages, page, setPage } = useAppContext();
+
   const prevPage = () => {
     let newPage = page - 1;
     if (newPage < 1) {
@@ -11,6 +12,7 @@ const PageBtnContainer = ({ handleClick }) => {
     }
     setPage(newPage);
   };
+
   const nextPage = () => {
     let newPage = page + 1;
     if (newPage > numOfPages) {
@@ -22,6 +24,7 @@ const PageBtnContainer = ({ handleClick }) => {
   const pages = Array.from({ length: numOfPages }, (item, index) => {
     return index + 1;
   });
+
   return (
     <Wrapper>
       <button className='prev-btn' onClick={prevPage}>
@@ -54,7 +57,7 @@ const Wrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: end;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 1rem;
   .btn-container {
     background: var(--primary-100);
@@ -66,7 +69,7 @@ const Wrapper = styled.section`
     width: 50px;
     height: 40px;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--primary-500);
     transition: var(--transition);
     border-radius: var(--borderRadius);

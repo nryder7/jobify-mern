@@ -26,6 +26,7 @@ const Job = ({
           <h5>{position}</h5>
           <p>{company}</p>
         </div>
+        <div className={`status ${status}`}>{status}</div>
       </header>
       <div className='content'>
         <div className='content-center'>
@@ -33,7 +34,6 @@ const Job = ({
           <JobInfo icon={<FaBriefcase />} text={type} />
           <JobInfo icon={<FaCalendarAlt />} text={date} />
         </div>
-        <div className={`status ${status}`}>{status}</div>
       </div>
       <footer>
         <div className='action'>
@@ -70,7 +70,7 @@ const Wrapper = styled.article`
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--grey-100);
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     h5 {
       letter-spacing: 0;
@@ -137,17 +137,24 @@ const Wrapper = styled.article`
     text-align: center;
     width: 100px;
     height: 30px;
+    align-self: start;
+    margin-top: 0.75rem;
+    margin-left: 0.5rem;
   }
   footer {
     margin-top: 1rem;
-    padding-left: 1.5rem;
+    /* padding-left: 1.5rem; */
     padding-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
   }
   .edit-btn,
   .delete-btn {
     letter-spacing: var(--letterSpacing);
     cursor: pointer;
     height: 30px;
+    width: 40%;
   }
   .edit-btn {
     color: var(--green-dark);

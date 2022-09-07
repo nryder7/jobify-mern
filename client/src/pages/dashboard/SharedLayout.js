@@ -28,6 +28,7 @@ const Wrapper = styled.section`
     width: 90vw;
     margin: 0 auto;
     padding: 0;
+    margin-top: -1.5rem;
   }
   @media (min-width: 992px) {
     .dashboard {
@@ -37,6 +38,7 @@ const Wrapper = styled.section`
       width: 90%;
       padding: 0;
       padding: 2rem 0;
+      margin-top: 0.25rem;
     }
   }
 `;
