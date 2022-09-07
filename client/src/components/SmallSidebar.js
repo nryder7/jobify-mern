@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FaTimes } from 'react-icons/fa';
+import { FaRegWindowClose } from 'react-icons/fa';
+// import { FaTimes, FaRegWindowClose } from 'react-icons/fa';
 import { useAppContext } from '../context/appContext.js';
 import { NavLinks, Logo } from './index.js';
 
@@ -14,7 +15,8 @@ const SmallSidebar = () => {
       >
         <div className='content'>
           <button className='close-btn' type='button' onClick={toggleSidebar}>
-            <FaTimes />
+            <FaRegWindowClose />
+            {/* <FaTimes /> */}
           </button>
           <header>
             <Logo />
@@ -30,12 +32,6 @@ const Wrapper = styled.aside`
   @media (min-width: 992px) {
     display: none;
   }
-  /* @media (orientation: portrait) {
-    .content {
-      display: grid;
-      grid-template-columns: 2;
-    }
-  } */
   .sidebar-container {
     position: fixed;
     inset: 0;
@@ -68,11 +64,17 @@ const Wrapper = styled.aside`
     left: 10px;
     background: transparent;
     border-color: transparent;
-    font-size: 2rem;
+    font-size: 1.75rem;
     color: var(--red-dark);
+    color: var(--primary-500);
     cursor: pointer;
   }
   @media (max-height: 400px) {
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+    }
     .nav-links {
       margin-top: 1.5rem;
       display: grid;
@@ -95,6 +97,7 @@ const Wrapper = styled.aside`
     }
     .nav-link {
       display: flex;
+      padding: 1rem 0;
     }
   }
   .nav-link {
