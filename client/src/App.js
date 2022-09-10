@@ -1,5 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Error, Landing, Register, ProtectedRoute } from './pages/index.js';
+import {
+  Error,
+  Landing,
+  Register,
+  ProtectedRoute,
+  RegisterFormik,
+} from './pages/index.js';
 import {
   AllJobs,
   AddJob,
@@ -25,7 +31,7 @@ function App() {
           <Route path='profile' element={<Profile />} />
           <Route path='stats' element={<Stats />} />
         </Route>
-        <Route path='/register' element={<Register />} />
+        <Route path='/register' element={<RegisterFormik />} />
         <Route path='/landing' element={<Landing />} />
         <Route path='*' element={<Error />} />
       </Routes>
