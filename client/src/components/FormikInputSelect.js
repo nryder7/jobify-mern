@@ -5,19 +5,21 @@ const FormikSelect = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Div>
         <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
         {meta.touched && meta.error ? (
           <span className='error'>{meta.error}</span>
         ) : null}
-      </div>
+      </Div>
       <StyledSelect {...field} {...props} className='form-select' />
-      {/* {meta.touched && meta.error ? (
-        <StyledErrorMessage>{meta.error}</StyledErrorMessage>
-      ) : null} */}
     </>
   );
 };
+
+const Div = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const StyledSelect = styled.select`
   color: var(--blue);
@@ -38,7 +40,8 @@ const StyledErrorMessage = styled.div`
 `;
 
 const StyledLabel = styled.label`
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
+  margin-top: 0;
 `;
 
 export default FormikSelect;

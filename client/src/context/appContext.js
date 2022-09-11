@@ -175,25 +175,24 @@ const AppProvider = ({ children }) => {
     hideAlert();
   };
 
-  const createJob = async () => {
-    const {
-      position,
-      company,
-      officeLocation,
-      jobStatus,
-      jobSetting,
-      jobType,
-    } = state;
+  const createJob = async (job) => {
+    // const {
+    //   position,
+    //   company,
+    //   officeLocation,
+    //   jobStatus,
+    //   jobSetting,
+    //   jobType,
+    // } = state;
 
-    const job = {
-      position,
-      company,
-      officeLocation,
-      jobStatus,
-      jobSetting,
-      jobType,
-    };
-
+    // const job = {
+    //   position,
+    //   company,
+    //   officeLocation,
+    //   jobStatus,
+    //   jobSetting,
+    //   jobType,
+    // };
     dispatch({ type: CREATE_JOB_BEGIN });
 
     try {

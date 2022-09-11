@@ -159,6 +159,7 @@ const reducer = (state, action) => {
       alertVisible: true,
       alertType: 'success',
       alertText: action.payload.msg,
+      jobIsEdit: false,
     };
   }
   if (action.type === HANDLE_CHANGE_FORM) {
