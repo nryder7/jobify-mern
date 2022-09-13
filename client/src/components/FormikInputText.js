@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const FormikText = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <>
+    <div className='form-row'>
       <Div>
         <label htmlFor={props.id || props.name}>{label}</label>
         {meta.touched && meta.error ? (
@@ -13,7 +13,7 @@ const FormikText = ({ label, ...props }) => {
       </Div>
       <input className='form-input' {...field} {...props} />
       {/* <input className='text-input' {...field} {...props} /> */}
-    </>
+    </div>
   );
 };
 

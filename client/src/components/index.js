@@ -2,6 +2,9 @@ import Alert from './Alert';
 import BigSidebar from './BigSidebar';
 import ChartsContainer from './ChartsContainer';
 import DashboardForm from './DashboardForm';
+import FormikSelect from './FormikInputSelect';
+import FormikText from './FormikInputText';
+import JobForm from './FormikJobForm';
 import FormRow from './FormRow';
 import JobsContainer from './JobsContainer';
 import Loading from './Loading';
@@ -17,6 +20,7 @@ export {
   Loading,
   Logo,
   FormRow,
+  JobForm,
   BigSidebar,
   Navbar,
   NavLinks,
@@ -26,4 +30,6 @@ export {
   SearchContainer,
   ChartsContainer,
   StatsContainer,
+  FormikText,
+  FormikSelect,
 };

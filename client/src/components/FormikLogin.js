@@ -1,8 +1,5 @@
 import * as Yup from 'yup';
-import { useEffect } from 'react';
 import { Formik, Form } from 'formik';
-// import './styles.css';
-// import '../styles-custom.css';
 import FormikText from './FormikInputText';
 import FormikCheckbox from './FormikInputCheckbox';
 import FormikSelect from './FormikInputSelect';

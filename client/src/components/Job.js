@@ -36,7 +36,7 @@ const Job = ({
         </div>
       </div>
       <footer>
-        <div className='action'>
+        <div className='actions'>
           <Link
             to='/add-job'
             className='btn edit-btn'
@@ -143,18 +143,18 @@ const Wrapper = styled.article`
   }
   footer {
     margin-top: 1rem;
-    /* padding-left: 1.5rem; */
+    padding-left: 1.5rem;
     padding-bottom: 1.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
+    justify-content: space-around;
   }
   .edit-btn,
   .delete-btn {
     letter-spacing: var(--letterSpacing);
     cursor: pointer;
     height: 30px;
-    width: 40%;
   }
   .edit-btn {
     color: var(--green-dark);
@@ -164,6 +164,10 @@ const Wrapper = styled.article`
   .delete-btn {
     color: var(--red-dark);
     background: var(--red-light);
+  }
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
   &:hover .actions {
     visibility: visible;

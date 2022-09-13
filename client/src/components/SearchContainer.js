@@ -1,84 +1,39 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { useAppContext } from '../context/appContext';
-import { FormRow } from '.';
-import searchFormOptions from '../utils/searchForm';
-import { useEffect } from 'react';
+import { JobForm } from '.';
 
 const SearchContainer = () => {
-  const {
-    resetFilters,
-    clearForm,
-    isLoading,
-    search,
-    searchStatus,
-    searchType,
-    sort,
-    handleChange,
-    clearFilters,
-    statusOptions,
-    jobTypeOptions,
-    getJobs,
-    company,
-    position,
-    officeLocation,
-    jobSetting,
-    jobType,
-    jobStatus,
-  } = useAppContext();
-
-  const job = {
-    position,
-    company,
-    officeLocation,
-    jobStatus,
-    jobSetting,
-    jobType,
-  };
+  const { resetFilters, isLoading, handleChange, getJobs } = useAppContext();
 
   const handleSearch = (e) => {
     // if (isLoading) return;
     handleChange(e);
   };
-  const handleClear = (e) => {
-    e.preventDefault();
-    clearForm();
-  };
 
   return (
     <Wrapper>
-      <form
+      <JobForm
         className='form'
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <h3>search form</h3>
-        <div className='form-center'>
-          {searchFormOptions.map((item) => {
-            return (
-              <FormRow
-                key={item.id}
-                {...item}
-                handleChange={handleSearch}
-                value={job[item.name] || ''}
-              />
-            );
-          })}
-          <button
-            className='btn btn-block btn-danger'
-            // disabled={isLoading}
-            onClick={handleClear}
-          >
-            clear filters
-          </button>
-        </div>
-      </form>
+        title='search form'
+        handleChange={handleSearch}
+        validateOnChange={false}
+        validateOnBlur={false}
+        submit={false}
+        all={true}
+      />
+
+      {/* className='form-center' */}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
   /* height: calc(100vh - var(--nav-height)); */
+  margin: 0 auto;
+  border-radius: var(--borderRadius);
+  width: 100%;
+  background: var(--white);
+  padding: 2rem 2.5rem 2rem;
 
   .form {
     width: 100%;

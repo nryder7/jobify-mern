@@ -1,18 +1,31 @@
 import { useField } from 'formik';
 import styled from '@emotion/styled';
 
-const FormikSelect = ({ label, ...props }) => {
+const FormikSelect = ({ all = false, options, label, ...props }) => {
   const [field, meta] = useField(props);
+
+  const filteredOptions = all
+    ? options
+    : options.filter((option) => option.id !== 0);
+
   return (
-    <>
+    <div className='form-row'>
       <Div>
         <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
         {meta.touched && meta.error ? (
           <span className='error'>{meta.error}</span>
         ) : null}
       </Div>
-      <StyledSelect {...field} {...props} className='form-select' />
-    </>
+      <StyledSelect {...field} {...props} className='form-select'>
+        {filteredOptions.map((option) => {
+          return (
+            <option key={option.id} value={option.value}>
+              {option.textContent}
+            </option>
+          );
+        })}
+      </StyledSelect>
+    </div>
   );
 };
 

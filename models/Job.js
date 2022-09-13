@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-const JobSchema = new mongoose.Schema(
+const JobSchema = new Schema(
   {
     company: {
       type: String,
@@ -32,7 +33,7 @@ const JobSchema = new mongoose.Schema(
       default: 'my-city',
     },
     createdBy: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
       required: [true, 'User must be provided'],
     },

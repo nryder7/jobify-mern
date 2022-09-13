@@ -8,7 +8,7 @@ const AllJobs = () => {
     // getJobs();
     clearForm();
     setIsSearch(true);
-  }, []);
+  }, [isSearch]);
   return (
     <>
       <SearchContainer />

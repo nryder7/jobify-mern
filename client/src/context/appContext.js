@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useReducer } from 'react';
 import reducer from './reducer';
-import jobFormOptions from '../utils/form';
 
 import {
   HIDE_ALERT,
@@ -45,10 +44,10 @@ const initialState = {
   jobEditId: '',
   position: '',
   company: '',
-  officeLocation: localStorage.getItem('officeLocation') || null,
-  jobSetting: localStorage.getItem('jobSetting') || 'office',
-  jobType: localStorage.getItem('jobType') || 'full-time',
-  jobStatus: localStorage.getItem('jobStatus') || 'pending',
+  officeLocation: '',
+  jobSetting: '',
+  jobType: '',
+  jobStatus: '',
   jobs: [],
   hits: 0,
   numOfPages: 1,
@@ -176,25 +175,7 @@ const AppProvider = ({ children }) => {
   };
 
   const createJob = async (job) => {
-    // const {
-    //   position,
-    //   company,
-    //   officeLocation,
-    //   jobStatus,
-    //   jobSetting,
-    //   jobType,
-    // } = state;
-
-    // const job = {
-    //   position,
-    //   company,
-    //   officeLocation,
-    //   jobStatus,
-    //   jobSetting,
-    //   jobType,
-    // };
     dispatch({ type: CREATE_JOB_BEGIN });
-
     try {
       if (state.jobIsEdit) {
         await authFetch.patch(`/jobs/${state.jobEditId}`, job);
