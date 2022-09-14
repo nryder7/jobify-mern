@@ -1,12 +1,16 @@
-import { FaBug, FaCalendarCheck, FaSuitcaseRolling } from 'react-icons/fa';
+import { MdPendingActions } from 'react-icons/md';
+import { TbClipboardOff, TbClipboardCheck } from 'react-icons/tb';
+// import {
+//   FcAddDatabase,
+//   FcAcceptDatabase,
+//   FcDeleteDatabase,
+// } from 'react-icons/fc';
 
 const defaultStats = [
   {
     id: 1,
     title: 'pending applications',
-    // count: 0,
-    // count: stats.pending || 0,
-    icon: <FaSuitcaseRolling />,
+    icon: <MdPendingActions />,
     color: '#e9b949',
     bcg: '#fcefc7',
     status: 'pending',
@@ -14,9 +18,7 @@ const defaultStats = [
   {
     id: 2,
     title: 'interviews scheduled',
-    // count: 0,
-    // count: stats.interview || 0,
-    icon: <FaCalendarCheck />,
+    icon: <TbClipboardCheck />,
     color: '#647acb',
     bcg: '#e0e8f9',
     status: 'interview',
@@ -24,9 +26,7 @@ const defaultStats = [
   {
     id: 3,
     title: 'jobs declined',
-    // count: 0,
-    // count: stats.declined || 0,
-    icon: <FaBug />,
+    icon: <TbClipboardOff />,
     color: '#d66a6a',
     bcg: '#ffeeee',
     status: 'declined',

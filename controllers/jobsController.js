@@ -32,6 +32,7 @@ const getAllJobs = async (req, res) => {
     page = 1,
     limit = 10,
   } = req.query;
+  console.log(sort);
 
   const skip = (Number(page) - 1) * Number(limit);
 
@@ -67,11 +68,17 @@ const getAllJobs = async (req, res) => {
   if (sort === 'created.old') {
     result = result.sort('createdAt');
   }
-  if (sort === 'position.az') {
+  if (sort === 'position.a') {
     result = result.sort('position');
   }
-  if (sort === 'position.za') {
+  if (sort === 'position.z') {
     result = result.sort('-position');
+  }
+  if (sort === 'company.a') {
+    result = result.sort('company');
+  }
+  if (sort === 'company.z') {
+    result = result.sort('-company');
   }
 
   result = result.skip(skip).limit(limit);

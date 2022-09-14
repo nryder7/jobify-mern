@@ -23,7 +23,8 @@ const ChartsContainer = () => {
   );
 };
 const Wrapper = styled.section`
-  margin-top: 4rem;
+  margin-top: 0;
+  /* margin-top: 4rem; */
   text-align: center;
   button {
     background: transparent;

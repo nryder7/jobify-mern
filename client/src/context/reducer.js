@@ -18,6 +18,7 @@ import {
   CREATE_JOB_SUCCESS,
   SET_EDIT_JOB,
   SET_SEARCH,
+  SET_SORT,
   DELETE_JOB_BEGIN,
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
@@ -203,6 +204,12 @@ const reducer = (state, action) => {
     return {
       ...state,
       isSearch: action.payload,
+    };
+  }
+  if (action.type === SET_SORT) {
+    return {
+      ...state,
+      sort: action.payload,
     };
   }
 

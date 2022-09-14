@@ -38,4 +38,6 @@ export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const SET_SEARCH = 'SET_SEARCH';
 
+export const SET_SORT = 'SET_SORT';
+
 export const CHANGE_PAGE = 'CHANGE_PAGE';

@@ -13,8 +13,8 @@ import Navbar from './Navbar';
 import NavLinks from './NavLinks';
 import SearchContainer from './SearchContainer';
 import SmallSidebar from './SmallSidebar';
+import Sort from './Sort';
 import StatsContainer from './StatsContainer';
-
 export {
   Alert,
   Loading,
@@ -32,4 +32,5 @@ export {
   StatsContainer,
   FormikText,
   FormikSelect,
+  Sort,
 };
