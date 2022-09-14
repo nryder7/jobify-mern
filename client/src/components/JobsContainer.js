@@ -44,9 +44,9 @@ const JobsContainer = () => {
   }
   return (
     <Wrapper>
-      <Sort>
+      <Sort items={totalJobs}>
         <h5 className='total'>
-          {totalJobs} job{totalJobs > 1 && 's'} found
+          {totalJobs} job{(totalJobs > 1 || totalJobs === 0) && 's'} found
         </h5>
       </Sort>
       <div className='underline'></div>
@@ -61,7 +61,7 @@ const JobsContainer = () => {
   );
 };
 const Wrapper = styled.section`
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   .underline {
     background: var(--primary-300);
     width: 100%;

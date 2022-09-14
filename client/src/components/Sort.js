@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useAppContext } from '../context/appContext';
 
-const Sort = ({ children }) => {
+const Sort = ({ items, children }) => {
   const { setSort, sort } = useAppContext();
   const handleSort = (e) => {
     setSort(e);
@@ -11,23 +11,25 @@ const Sort = ({ children }) => {
     <Wrapper>
       {children}
       <hr />
-      <form>
-        <label htmlFor='sort'>sort by</label>
-        <select
-          name='sort'
-          id='sort'
-          className='sort-input'
-          value={sort}
-          onChange={(e) => handleSort(e)}
-        >
-          <option value='created.new'>created (recent)</option>
-          <option value='created.old'>created (oldest)</option>
-          <option value='company.a'>company (A - Z)</option>
-          <option value='company.z'>company (Z - A)</option>
-          <option value='position.a'>position (A - Z)</option>
-          <option value='position.z'>position (Z - A)</option>
-        </select>
-      </form>
+      {items > 0 && (
+        <form>
+          <label htmlFor='sort'>sort by</label>
+          <select
+            name='sort'
+            id='sort'
+            className='sort-input'
+            value={sort}
+            onChange={(e) => handleSort(e)}
+          >
+            <option value='created.new'>created (recent)</option>
+            <option value='created.old'>created (oldest)</option>
+            <option value='company.a'>company (A - Z)</option>
+            <option value='company.z'>company (Z - A)</option>
+            <option value='position.a'>position (A - Z)</option>
+            <option value='position.z'>position (Z - A)</option>
+          </select>
+        </form>
+      )}
     </Wrapper>
   );
 };

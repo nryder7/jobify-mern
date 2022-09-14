@@ -77,16 +77,16 @@ const Wrapper = styled.section`
     height: 35px;
     margin-top: 1rem;
   }
-  /* .btn-container {
+  .btn-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 1rem;
     align-self: flex-end;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     button {
       height: 35px;
     }
-  } */
+  }
   .clear-btn {
     background: var(--grey-500);
   }

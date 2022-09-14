@@ -89,7 +89,11 @@ const JobForm = ({
                     ></FormikSelect>
                   );
                 })}
-                <div className='btn-container'>
+                <div
+                  className={
+                    clear && submit ? 'btn-container' : 'two-fr btn-container'
+                  }
+                >
                   {submit ? (
                     <button className='btn btn-block' type='submit'>
                       submit

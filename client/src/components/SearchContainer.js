@@ -62,10 +62,13 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
     column-gap: 1rem;
     align-self: flex-end;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     button {
       height: 35px;
     }
+  }
+  .two-fr {
+    grid-template-columns: 2fr 1fr;
   }
   .clear-btn {
     background: var(--grey-500);
@@ -79,10 +82,10 @@ const Wrapper = styled.section`
       align-items: center;
       column-gap: 1rem;
     }
-    .btn-container {
+    /* .btn-container {
       margin-top: 1rem;
       margin-top: 0.25rem;
-    }
+    } */
   }
   @media (min-width: 992px) {
     margin-top: 0;
@@ -92,7 +95,7 @@ const Wrapper = styled.section`
       grid-template-columns: 1fr 1fr 1fr;
     }
     .form-center button {
-      margin-top: 0;
+      /* margin-top: 0; */
     }
   }
 `;
