@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Alert, FormRow } from '../../components';
 import { useAppContext } from '../../context/appContext';
 

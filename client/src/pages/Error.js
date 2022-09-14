@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import img from '../assets/images/not-found-alt.svg';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Error = () => {
   return (

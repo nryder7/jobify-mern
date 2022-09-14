@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StatItem = ({ bcg, color, count, icon, id, status, title }) => {
   return (

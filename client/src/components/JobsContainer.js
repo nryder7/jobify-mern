@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useAppContext } from '../context/appContext';
 import Job from './Job';
 import Loading from './Loading';
@@ -58,11 +58,22 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr;
     row-gap: 2rem;
   }
+
+  @media (min-width: 800px) {
+    .jobs {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  }
   @media (min-width: 992px) {
     .jobs {
-      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (min-width: 1120px) {
+    .jobs {
       grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
+      gap: 2rem;
     }
   }
 `;

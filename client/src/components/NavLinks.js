@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useAppContext } from '../context/appContext.js';
 
 import links from '../utils/links.js';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const NavLinks = ({ toggle }) => {
   const { toggleSidebar } = useAppContext();

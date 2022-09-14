@@ -10,13 +10,15 @@ const FormikSelect = ({ all = false, options, label, ...props }) => {
 
   return (
     <div className='form-row'>
-      <Div>
-        <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
+      <StyledDiv>
+        <label className='form-label' htmlFor={props.id || props.name}>
+          {label}
+        </label>
         {meta.touched && meta.error ? (
           <span className='error'>{meta.error}</span>
         ) : null}
-      </Div>
-      <StyledSelect {...field} {...props} className='form-select'>
+      </StyledDiv>
+      <select {...field} {...props} className='form-select'>
         {filteredOptions.map((option) => {
           return (
             <option key={option.id} value={option.value}>
@@ -24,37 +26,28 @@ const FormikSelect = ({ all = false, options, label, ...props }) => {
             </option>
           );
         })}
-      </StyledSelect>
+      </select>
     </div>
   );
 };
 
-const Div = styled.div`
+const StyledDiv = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const StyledSelect = styled.select`
-  color: var(--blue);
-`;
-
-const StyledErrorMessage = styled.div`
-  font-size: 12px;
-  color: var(--red-600);
-  width: 400px;
-  margin-top: 0.25rem;
-  &:before {
-    content: '❌ ';
-    font-size: 10px;
-  }
-  @media (prefers-color-scheme: dark) {
-    color: var(--red-300);
-  }
-`;
-
-const StyledLabel = styled.label`
-  /* margin-top: 1rem; */
-  margin-top: 0;
-`;
+// const StyledErrorMessage = styled.div`
+//   font-size: 12px;
+//   color: var(--red-600);
+//   width: 400px;
+//   margin-top: 0.25rem;
+//   &:before {
+//     content: '❌ ';
+//     font-size: 10px;
+//   }
+//   @media (prefers-color-scheme: dark) {
+//     color: var(--red-300);
+//   }
+// `;
 
 export default FormikSelect;

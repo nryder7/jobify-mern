@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import moment from 'moment';
 import { FaBriefcase, FaCalendarAlt, FaLocationArrow } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -36,7 +36,7 @@ const Job = ({
         </div>
       </div>
       <footer>
-        <div className='actions'>
+        <div className='action'>
           <Link
             to='/add-job'
             className='btn edit-btn'
@@ -70,7 +70,7 @@ const Wrapper = styled.article`
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--grey-100);
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto auto auto;
     align-items: center;
     h5 {
       letter-spacing: 0;
@@ -123,7 +123,7 @@ const Wrapper = styled.article`
       grid-template-columns: 1fr 1fr;
     }
     @media (min-width: 992px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
     }
     @media (min-width: 1120px) {
       grid-template-columns: 1fr 1fr;
@@ -135,7 +135,7 @@ const Wrapper = styled.article`
     text-transform: capitalize;
     letter-spacing: var(--letterSpacing);
     text-align: center;
-    width: 100px;
+    width: 80px;
     height: 30px;
     align-self: start;
     margin-top: 0.75rem;

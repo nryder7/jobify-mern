@@ -6,7 +6,9 @@ const FormikText = ({ label, ...props }) => {
   return (
     <div className='form-row'>
       <Div>
-        <label htmlFor={props.id || props.name}>{label}</label>
+        <label className='form-label' htmlFor={props.id || props.name}>
+          {label}
+        </label>
         {meta.touched && meta.error ? (
           <span className='error'>{meta.error}</span>
         ) : null}

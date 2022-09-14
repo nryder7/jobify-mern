@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import StatItem from './StatItem';
 import { useAppContext } from '../context/appContext';
 

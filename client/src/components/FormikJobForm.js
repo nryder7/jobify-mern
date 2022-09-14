@@ -73,7 +73,7 @@ const JobForm = ({
       >
         {({ resetForm }) => {
           return (
-            <Form onChange={handleChange}>
+            <Form onChange={handleChange} className='form'>
               <div className='form-center'>
                 {textFields.map((item) => (
                   <FormikText key={item.id} {...item} />

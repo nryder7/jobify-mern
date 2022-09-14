@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Alert, FormRow, Logo } from '../components';
 import FormikRegister from '../components/FormikRegister';
 import FormikLogin from '../components/FormikLogin';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useAppContext } from '../context/appContext';
 import { useNavigate } from 'react-router-dom';
 

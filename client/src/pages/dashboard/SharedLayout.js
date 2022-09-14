@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Outlet, Link } from 'react-router-dom';
 import { SmallSidebar, BigSidebar, Navbar } from '../../components/index.js';
 

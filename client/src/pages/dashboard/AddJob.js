@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAppContext } from '../../context/appContext';
 import { Alert, JobForm } from '../../components/';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const AddJob = () => {
   const {
@@ -34,20 +34,20 @@ const AddJob = () => {
   return (
     <Wrapper>
       {alertVisible && <Alert />}
-      <div className='form-center'></div>
-      <JobForm
-        className='form'
-        handleSubmit={handleSubmit}
-        jobIsEdit={jobIsEdit}
-        isSearch={isSearch}
-        title={jobIsEdit ? 'edit job' : 'add job'}
-      />
+      <div>
+        <JobForm
+          handleSubmit={handleSubmit}
+          jobIsEdit={jobIsEdit}
+          isSearch={isSearch}
+          title={jobIsEdit ? 'edit job' : 'add job'}
+        />
+      </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  margin: 0 auto;
+  margin: 2rem auto;
   border-radius: var(--borderRadius);
   width: 100%;
   background: var(--white);

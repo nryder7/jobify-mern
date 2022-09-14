@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useAppContext } from '../context/appContext';
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
 

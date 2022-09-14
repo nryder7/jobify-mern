@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Alert, FormRow, Logo } from '../components';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useAppContext } from '../context/appContext';
 import { useNavigate } from 'react-router-dom';
 

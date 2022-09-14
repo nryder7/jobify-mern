@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { FaRegWindowClose } from 'react-icons/fa';
 // import { FaTimes, FaRegWindowClose } from 'react-icons/fa';
 import { useAppContext } from '../context/appContext.js';
