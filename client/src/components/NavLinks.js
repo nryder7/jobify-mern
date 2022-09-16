@@ -28,7 +28,22 @@ const NavLinks = ({ toggle }) => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  /* .span {
+    position: relative;
+    height: 24px;
+    width: 100%;
+    padding: 0;
+    padding-bottom: 100%;
+  }
+  icon {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+  } */
+`;
 // const Wrapper = styled.div`
 //   .nav-links {
 //     padding-top: 2rem;

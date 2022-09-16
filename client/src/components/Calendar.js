@@ -53,6 +53,15 @@ const Wrapper = styled.section`
     padding-bottom: 1rem;
     padding-top: 0.5rem;
   }
+  .react-calendar__tile--active {
+    background: var(--primary-400);
+  }
+  .react-calendar__month-view__days__day--weekend {
+    color: #222;
+  }
+  .react-calendar__month-view__days__day--neighboringMonth {
+    visibility: hidden;
+  }
   .date {
     width: 100%;
     background: white;
