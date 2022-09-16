@@ -41,6 +41,7 @@ const Navbar = () => {
 };
 
 const Wrapper = styled.nav`
+  z-index: 2;
   height: var(--nav-height);
   display: flex;
   align-items: center;

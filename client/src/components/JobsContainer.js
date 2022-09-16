@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useAppContext } from '../context/appContext';
+import Stats from '../pages/dashboard/Calendar';
 import Job from './Job';
 import Loading from './Loading';
 import PageBtnContainer from './PageBtnContainer';
 import Sort from './Sort';
 
-const JobsContainer = () => {
+const JobsContainer = ({ title = 'Job', interview = false }) => {
   const {
     getJobs,
     jobs,
@@ -22,6 +23,7 @@ const JobsContainer = () => {
     jobStatus,
     sort,
     date,
+    stats,
   } = useAppContext();
 
   // useEffect(() => {
@@ -53,7 +55,8 @@ const JobsContainer = () => {
     <Wrapper>
       <Sort items={totalJobs}>
         <h5 className='total'>
-          {totalJobs} job{(totalJobs > 1 || totalJobs === 0) && 's'} found
+          {totalJobs} {title}
+          {(totalJobs > 1 || totalJobs === 0) && 's'} found
         </h5>
       </Sort>
       <div className='underline'></div>
@@ -64,6 +67,7 @@ const JobsContainer = () => {
         })}
       </div>
       {numOfPages > 0 && <PageBtnContainer />}
+      {/* {numOfPages > 0 && title !== <PageBtnContainer />} */}
     </Wrapper>
   );
 };

@@ -1,6 +1,6 @@
 import { useAppContext } from '../context/appContext';
-import { FormikText, FormikSelect } from './';
-
+import { FormikText, FormikSelect, Calendar } from './';
+// import { useState } from 'react';
 import { Formik, Form } from 'formik';
 
 import {
@@ -9,6 +9,7 @@ import {
   resetValues,
   validationSchema,
 } from '../utils/jobForm';
+import DatePicker from './DatePicker';
 
 const JobForm = ({
   title,
@@ -39,7 +40,9 @@ const JobForm = ({
     jobType: '',
     jobSetting: '',
     jobStatus: '',
+    date: '',
   };
+  //  const [date, setDate] = useState(false);
 
   if (jobIsEdit) {
     initialValues.company = company;
@@ -89,29 +92,29 @@ const JobForm = ({
                     ></FormikSelect>
                   );
                 })}
-                <div
+                {jobStatus === 'interview' && <DatePicker />}
+                {/* <div
                   className={
                     clear && submit ? 'btn-container' : 'two-fr btn-container'
                   }
-                >
-                  {submit ? (
-                    <button className='btn btn-block' type='submit'>
-                      submit
-                    </button>
-                  ) : null}
-                  {clear ? (
-                    <button
-                      className='btn btn-block clear-btn'
-                      type='button'
-                      onClick={() => {
-                        resetForm({ values: { ...resetValues } });
-                        clearForm();
-                      }}
-                    >
-                      clear
-                    </button>
-                  ) : null}
-                </div>
+                > */}
+                {submit ? (
+                  <button className='btn btn-block' type='submit'>
+                    submit
+                  </button>
+                ) : null}
+                {clear ? (
+                  <button
+                    className='btn btn-block clear-btn'
+                    type='button'
+                    onClick={() => {
+                      resetForm({ values: { ...resetValues } });
+                      clearForm();
+                    }}
+                  >
+                    clear
+                  </button>
+                ) : null}
               </div>
             </Form>
           );

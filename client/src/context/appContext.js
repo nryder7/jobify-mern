@@ -202,6 +202,13 @@ const AppProvider = ({ children }) => {
       payload: { name, value },
     });
   };
+
+  const setFilter = ({ name, value }) => {
+    dispatch({
+      type: HANDLE_CHANGE_FORM,
+      payload: { name, value },
+    });
+  };
   const clearForm = () => {
     dispatch({
       type: HANDLE_CLEAR_FORM,
@@ -293,6 +300,7 @@ const AppProvider = ({ children }) => {
         setSort,
         setPage,
         setDate,
+        setFilter,
       }}
     >
       {children}

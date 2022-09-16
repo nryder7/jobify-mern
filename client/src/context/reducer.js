@@ -258,7 +258,12 @@ const reducer = (state, action) => {
     return { ...state, page: action.payload };
   }
   if (action.type === SET_DATE) {
-    return { ...state, date: action.payload };
+    return {
+      ...state,
+      date: action.payload,
+      search: true,
+      status: 'interview',
+    };
   }
   throw new Error(`no matching action ${action.type}`);
 };

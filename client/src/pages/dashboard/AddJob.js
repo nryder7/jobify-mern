@@ -12,6 +12,7 @@ const AddJob = () => {
     jobIsEdit,
     isSearch,
     setIsSearch,
+    handleChange,
   } = useAppContext();
 
   const handleSubmit = async (job) => {
@@ -23,6 +24,10 @@ const AddJob = () => {
     e.preventDefault();
     clearForm();
   };
+  // const handleSearch = (e) => {
+  //   // if (isLoading) return;
+  //   handleChange(e);
+  // };
 
   useEffect(() => {
     if (!jobIsEdit) {
@@ -40,6 +45,8 @@ const AddJob = () => {
           jobIsEdit={jobIsEdit}
           isSearch={isSearch}
           title={jobIsEdit ? 'edit job' : 'add job'}
+          clear={false}
+          handleChange={handleChange}
         />
       </div>
     </Wrapper>

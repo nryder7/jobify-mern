@@ -37,6 +37,9 @@ const JobSchema = new Schema(
       ref: 'User',
       required: [true, 'User must be provided'],
     },
+    interview: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );

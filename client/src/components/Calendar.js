@@ -62,6 +62,29 @@ const Wrapper = styled.section`
   .react-calendar__month-view__days__day--neighboringMonth {
     visibility: hidden;
   }
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next2-button {
+    display: none;
+  }
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button {
+    display: none;
+  }
+  button.react-calendar__navigation__arrow {
+    font-size: 1.75rem;
+  }
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next-button {
+    margin-right: 0.5rem;
+  }
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev-button {
+    margin-left: 0.5rem;
+  }
+  span.react-calendar__navigation__label__labelText.react-calendar__navigation__label__labelText--from {
+    letter-spacing: var(--letterSpacing);
+    font-size: 1.125rem;
+  }
+  abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+  }
   .date {
     width: 100%;
     background: white;

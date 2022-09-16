@@ -19,6 +19,7 @@ const Stats = () => {
     page,
     sort,
     date,
+    setFilter,
   } = useAppContext();
 
   useEffect(() => {
@@ -26,7 +27,9 @@ const Stats = () => {
   }, []);
 
   useEffect(() => {
-    showStats();
+    // showStats();
+    setIsSearch(true);
+    setFilter({ name: 'jobStatus', value: 'interview' });
     getJobs();
   }, [
     company,
@@ -53,7 +56,7 @@ const Stats = () => {
   return (
     <>
       <Calendar />
-      <JobsContainer />
+      <JobsContainer title='Interview' />
     </>
   );
 };

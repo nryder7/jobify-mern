@@ -23,7 +23,8 @@ const links = [
     id: 1,
     text: 'all jobs',
     path: '/',
-    icon: <IoSearchSharp transform='rotate(90)' />,
+    icon: <IoSearchSharp />,
+    // icon: <IoSearchSharp transform='rotate(90)' />,
   },
   {
     id: 2,

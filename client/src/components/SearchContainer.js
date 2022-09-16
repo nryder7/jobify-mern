@@ -51,6 +51,7 @@ const Wrapper = styled.section`
   .form-center {
     display: grid;
     row-gap: 0.5rem;
+    /* justify-content: space-between; */
   }
   .form-center button {
     align-self: end;
