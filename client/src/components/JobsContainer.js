@@ -21,20 +21,27 @@ const JobsContainer = () => {
     jobType,
     jobStatus,
     sort,
+    date,
   } = useAppContext();
 
-  useEffect(() => {
-    getJobs();
-  }, [
-    company,
-    position,
-    officeLocation,
-    jobSetting,
-    jobType,
-    jobStatus,
-    page,
-    sort,
-  ]);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     getJobs();
+  //     return () => {
+  //       clearTimeout(timeout);
+  //     };
+  //   }, 15000);
+  // }, [
+  //   company,
+  //   position,
+  //   officeLocation,
+  //   jobSetting,
+  //   jobType,
+  //   jobStatus,
+  //   page,
+  //   sort,
+  //   date,
+  // ]);
 
   if (isLoading) {
     return <Loading center />;

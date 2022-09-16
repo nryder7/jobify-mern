@@ -31,14 +31,23 @@ const getAllJobs = async (req, res) => {
     sort,
     page = 1,
     limit = 10,
+    date,
   } = req.query;
-  console.log(sort);
 
   const skip = (Number(page) - 1) * Number(limit);
 
   const queryObject = {
     createdBy: req.user.userId,
   };
+
+  if (date) {
+    const firstDay = new Date(date);
+    const nextDay = new Date(firstDay.getTime() + 86400000);
+    queryObject.createdAt = {
+      $gte: firstDay,
+      $lte: nextDay,
+    };
+  }
 
   if (company) {
     queryObject.company = { $regex: company, $options: 'i' };

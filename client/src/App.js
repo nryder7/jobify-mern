@@ -12,6 +12,7 @@ import {
   Profile,
   Stats,
   SharedLayout,
+  Calendar,
 } from './pages/dashboard/index.js';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path='add-job' element={<AddJob />} />
           <Route path='profile' element={<Profile />} />
           <Route path='stats' element={<Stats />} />
+          <Route path='calendar' element={<Calendar />} />
         </Route>
         <Route path='/register' element={<RegisterFormik />} />
         <Route path='/landing' element={<Landing />} />

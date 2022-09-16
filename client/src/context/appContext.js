@@ -29,6 +29,7 @@ import {
   HANDLE_CLEAR_FORM,
   SET_SEARCH,
   SET_SORT,
+  SET_DATE,
   CHANGE_PAGE,
 } from './actions';
 
@@ -58,14 +59,7 @@ const initialState = {
   searchStatus: 'all',
   searchType: 'all',
   sort: 'created.new',
-  // sortOptions: [
-  //   'created.new',
-  //   'created.old',
-  //   'company.a',
-  //   'company.z',
-  //   'position.a',
-  //   'position.z',
-  // ],
+  date: '',
 };
 
 const AppContext = React.createContext();
@@ -215,7 +209,7 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    let url = `/jobs/?page=${state.page}&sort=${state.sort}`;
+    let url = `/jobs/?page=${state.page}&sort=${state.sort}&date=${state.date}`;
     if (state.isSearch) {
       url =
         url +
@@ -272,6 +266,9 @@ const AppProvider = ({ children }) => {
   const setPage = (page) => {
     dispatch({ type: CHANGE_PAGE, payload: page });
   };
+  const setDate = (date) => {
+    dispatch({ type: SET_DATE, payload: date });
+  };
 
   return (
     <AppContext.Provider
@@ -295,6 +292,7 @@ const AppProvider = ({ children }) => {
         setIsSearch,
         setSort,
         setPage,
+        setDate,
       }}
     >
       {children}

@@ -40,4 +40,6 @@ export const SET_SEARCH = 'SET_SEARCH';
 
 export const SET_SORT = 'SET_SORT';
 
+export const SET_DATE = 'SET_DATE';
+
 export const CHANGE_PAGE = 'CHANGE_PAGE';

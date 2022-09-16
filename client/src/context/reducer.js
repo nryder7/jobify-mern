@@ -27,6 +27,7 @@ import {
   HANDLE_CHANGE_FORM,
   HANDLE_CLEAR_FORM,
   CHANGE_PAGE,
+  SET_DATE,
 } from './actions';
 
 const reducer = (state, action) => {
@@ -182,6 +183,7 @@ const reducer = (state, action) => {
       jobSetting: '',
       jobStatus: '',
       jobType: '',
+      date: '',
     };
   }
   if (action.type === GET_JOBS_BEGIN) {
@@ -254,6 +256,9 @@ const reducer = (state, action) => {
   }
   if (action.type === CHANGE_PAGE) {
     return { ...state, page: action.payload };
+  }
+  if (action.type === SET_DATE) {
+    return { ...state, date: action.payload };
   }
   throw new Error(`no matching action ${action.type}`);
 };

@@ -1,7 +1,7 @@
 import { IoBarChartSharp } from 'react-icons/io5';
 import { MdQueryStats } from 'react-icons/md';
 import { FaWpforms } from 'react-icons/fa';
-import { ImProfile } from 'react-icons/im';
+import { ImProfile, ImCalendar } from 'react-icons/im';
 
 const links = [
   {
@@ -11,10 +11,16 @@ const links = [
     icon: <MdQueryStats />,
   },
   {
-    id: 3,
+    id: 2,
     text: 'add job',
     path: 'add-job',
     icon: <FaWpforms />,
+  },
+  {
+    id: 3,
+    text: 'calendar',
+    path: '/calendar',
+    icon: <ImCalendar />,
   },
   {
     id: 4,
@@ -23,7 +29,7 @@ const links = [
     icon: <ImProfile />,
   },
   {
-    id: 2,
+    id: 5,
     text: 'stats',
     path: '/stats',
     icon: <IoBarChartSharp />,

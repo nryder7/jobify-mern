@@ -1,5 +1,6 @@
 import Alert from './Alert';
 import BigSidebar from './BigSidebar';
+import Calendar from './Calendar';
 import ChartsContainer from './ChartsContainer';
 import DashboardForm from './DashboardForm';
 import FormikSelect from './FormikInputSelect';
@@ -15,8 +16,10 @@ import SearchContainer from './SearchContainer';
 import SmallSidebar from './SmallSidebar';
 import Sort from './Sort';
 import StatsContainer from './StatsContainer';
+
 export {
   Alert,
+  Calendar,
   Loading,
   Logo,
   FormRow,

@@ -4,12 +4,39 @@ import { useAppContext } from '../../context/appContext';
 import styled from 'styled-components/macro';
 
 const AllJobs = () => {
-  const { setIsSearch, isSearch, clearForm } = useAppContext();
+  const {
+    getJobs,
+    setIsSearch,
+    isSearch,
+    clearForm,
+    company,
+    position,
+    officeLocation,
+    jobSetting,
+    jobType,
+    jobStatus,
+    page,
+    sort,
+    date,
+  } = useAppContext();
   useEffect(() => {
     // getJobs();
     clearForm();
     setIsSearch(true);
   }, [isSearch]);
+  useEffect(() => {
+    getJobs();
+  }, [
+    company,
+    position,
+    officeLocation,
+    jobSetting,
+    jobType,
+    jobStatus,
+    page,
+    sort,
+    date,
+  ]);
   return (
     <>
       <SearchContainer />

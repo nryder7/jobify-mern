@@ -49,10 +49,10 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URL);
     app.listen(port, () => {
-      console.log('listening');
+      // console.log('listening');
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 

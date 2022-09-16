@@ -14,10 +14,8 @@ const start = async () => {
     );
 
     await Job.create(jsonProducts);
-    console.log('ok');
     process.exit(0);
   } catch (error) {
-    console.log(error);
     process.exit(1);
   }
 };
