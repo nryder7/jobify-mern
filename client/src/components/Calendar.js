@@ -46,6 +46,12 @@ const Wrapper = styled.section`
   margin-bottom: 2rem;
   .react-calendar {
     width: 100%;
+    border-color: transparent;
+    border-radius: var(--borderRadius);
+    background: var(--white);
+    box-shadow: var(--shadow-2);
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
   }
   .date {
     width: 100%;
