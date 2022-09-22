@@ -1,7 +1,7 @@
 import { useAppContext } from '../context/appContext';
 import { FormikText, FormikSelect, Calendar } from './';
-// import { useState } from 'react';
 import { Formik, Form } from 'formik';
+// import { useState } from 'react';
 
 import {
   textFields,
@@ -31,6 +31,7 @@ const JobForm = ({
     jobType,
     jobSetting,
     jobStatus,
+    interviewDate,
   } = useAppContext();
 
   const initialValues = {
@@ -40,9 +41,8 @@ const JobForm = ({
     jobType: '',
     jobSetting: '',
     jobStatus: '',
-    date: '',
+    interviewDate: '',
   };
-  //  const [date, setDate] = useState(false);
 
   if (jobIsEdit) {
     initialValues.company = company;
@@ -51,8 +51,8 @@ const JobForm = ({
     initialValues.jobType = jobType;
     initialValues.jobSetting = jobSetting;
     initialValues.jobStatus = jobStatus;
+    initialValues.interviewDate = interviewDate;
   }
-
   return (
     <>
       <h3>{title}</h3>
@@ -74,7 +74,7 @@ const JobForm = ({
             : null
         }
       >
-        {({ resetForm }) => {
+        {({ resetForm, props }) => {
           return (
             <Form onChange={handleChange} className='form'>
               <div className='form-center'>
@@ -92,7 +92,13 @@ const JobForm = ({
                     ></FormikSelect>
                   );
                 })}
-                {jobStatus === 'interview' && <DatePicker />}
+                {jobStatus === 'interview' && (
+                  <DatePicker
+                    name={'interviewDate'}
+                    value={new Date(initialValues.interviewDate.value)}
+                  />
+                )}
+
                 {/* <div
                   className={
                     clear && submit ? 'btn-container' : 'two-fr btn-container'

@@ -60,6 +60,7 @@ const initialState = {
   searchType: 'all',
   sort: 'created.new',
   date: '',
+  interviewDate: '',
 };
 
 const AppContext = React.createContext();

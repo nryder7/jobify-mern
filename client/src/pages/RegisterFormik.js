@@ -38,11 +38,25 @@ const Register = () => {
         ) : (
           <FormikRegister registerUser={registerUser} />
         )}
-
         <p>
           {state.isMember ? 'Not a member yet?' : 'Already a member?'}
           <button type='button' onClick={toggleIsMember} className='member-btn'>
             {state.isMember ? 'Register' : 'Login'}
+          </button>
+        </p>
+        <p>
+          Want to demo the app first?
+          <button
+            type='button'
+            onClick={() => {
+              loginUser({
+                email: 'demo@test.com',
+                password: 'secret123',
+              });
+            }}
+            className='member-btn'
+          >
+            Demo
           </button>
         </p>
       </div>

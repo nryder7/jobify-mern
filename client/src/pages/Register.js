@@ -80,6 +80,14 @@ const Register = () => {
         <button className='btn btn-block' type='submit' disabled={isLoading}>
           submit
         </button>
+        <button
+          onClick={() => {}}
+          className='btn btn-block'
+          type='button'
+          disabled={isLoading}
+        >
+          demo
+        </button>
 
         <p>
           {state.isMember ? 'Not a member yet?' : 'Already a member?'}

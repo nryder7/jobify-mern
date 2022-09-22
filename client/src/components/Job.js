@@ -13,11 +13,14 @@ const Job = ({
   officeLocation,
   type,
   status,
+  interviewDate,
 }) => {
   const { setIsEditJob, deleteJob } = useAppContext();
 
   let date = moment(createdAt);
   date = date.format('MMM Do, YYYY');
+  let interviewDateFormat = moment(interviewDate);
+  interviewDateFormat = interviewDateFormat.format('MMM Do, YYYY');
   return (
     <Wrapper>
       <header>
@@ -33,6 +36,7 @@ const Job = ({
           <JobInfo icon={<FaLocationArrow />} text={officeLocation} />
           <JobInfo icon={<FaBriefcase />} text={type} />
           <JobInfo icon={<FaCalendarAlt />} text={date} />
+          <JobInfo icon={<FaCalendarAlt />} text={interviewDateFormat} />
         </div>
       </div>
       <footer>

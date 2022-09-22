@@ -76,4 +76,5 @@ export const validationSchema = Yup.object({
   jobType: Yup.string('office'),
   jobStatus: Yup.string('full-time'),
   jobLocation: Yup.string('pending'),
+  interviewDate: Yup.string(),
 });

@@ -69,21 +69,6 @@ const textFields = [
   },
 ];
 
-const selectForm = [
-  {
-    id: 1,
-    label: 'Job Type',
-    name: 'jobType',
-    options: [
-      { id: 1, value: '', textContent: 'Select a job type' },
-      { id: 2, value: 'designer', textContent: 'Designer' },
-      { id: 3, value: 'development', textContent: 'Developer' },
-      { id: 4, value: 'product', textContent: 'Product Manager' },
-      { id: 5, value: 'other', textContent: 'Other' },
-    ],
-  },
-];
-
 const FormikForm = ({ title, isMember, loginUser, registerUser }) => {
   return (
     <>
@@ -106,19 +91,6 @@ const FormikForm = ({ title, isMember, loginUser, registerUser }) => {
           {textFields.map((item) => (
             <FormikText key={item.id} {...item} />
           ))}
-          {selectForm.map((item) => {
-            return (
-              <FormikSelect key={item.id} label={item.label} name={item.name}>
-                {item.options.map((item) => {
-                  return (
-                    <option key={item.id} value={item.value}>
-                      {item.textContent}
-                    </option>
-                  );
-                })}
-              </FormikSelect>
-            );
-          })}
 
           <FormikCheckbox name='acceptedTerms'>
             I accept the terms and conditions
@@ -134,5 +106,3 @@ const FormikForm = ({ title, isMember, loginUser, registerUser }) => {
 };
 
 export default FormikForm;
-
-// export { validationSchema, initialValues, textFields, selectForm };

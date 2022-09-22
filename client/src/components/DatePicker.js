@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { useField, useFormikContext } from 'formik';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import styled from 'styled-components';
@@ -83,15 +84,23 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 //     box-sizing: content-box;
 //   }
 // `;
-const DatePickerComp = () => {
-  const [startDate, setStartDate] = useState();
+const DatePickerComp = (props) => {
+  // const [startDate, setStartDate] = useState();
+  const { setFieldValue } = useFormikContext();
+  const [field] = useField(props);
   return (
     <div className='form-row'>
       <label htmlFor='datePicker'>Interview Appointment</label>
       <Wrapper className='form-input'>
         <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          {...field}
+          {...props}
+          selected={(field.value && new Date(field.value)) || null}
+          onChange={(val) => {
+            setFieldValue(field.name, val);
+          }}
+          // selected={startDate}
+          // onChange={(date) => setStartDate(date)}
           timeInputLabel='Time:'
           dateFormat='MM/dd/yyyy h:mm aa'
           showTimeInput
@@ -101,6 +110,27 @@ const DatePickerComp = () => {
     </div>
   );
 };
+
+// working below
+// const DatePickerComp = () => {
+//   const [startDate, setStartDate] = useState();
+//   console.log(startDate);
+//   return (
+//     <div className='form-row'>
+//       <label htmlFor='datePicker'>Interview Appointment</label>
+//       <Wrapper className='form-input'>
+//         <DatePicker
+//           selected={startDate}
+//           onChange={(date) => setStartDate(date)}
+//           timeInputLabel='Time:'
+//           dateFormat='MM/dd/yyyy h:mm aa'
+//           showTimeInput
+//           placeholderText='Select Date/Time'
+//         />
+//       </Wrapper>
+//     </div>
+//   );
+// };
 //   const [startDate, setStartDate] = useState(new Date());
 //   const ExampleCustomTimeInput = ({ date, value, onChange }) => (
 //     <input

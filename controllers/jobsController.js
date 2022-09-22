@@ -34,6 +34,8 @@ const getAllJobs = async (req, res) => {
     date,
   } = req.query;
 
+  console.log(req.query);
+
   const skip = (Number(page) - 1) * Number(limit);
 
   const queryObject = {
@@ -113,8 +115,16 @@ const deleteJob = async (req, res) => {
 };
 const modifyJob = async (req, res) => {
   const { id } = req.params;
-  const { company, jobSetting, jobStatus, jobType, officeLocation, position } =
-    req.body;
+  const {
+    company,
+    jobSetting,
+    jobStatus,
+    jobType,
+    officeLocation,
+    position,
+    interviewDate,
+  } = req.body;
+  console.log(interviewDate);
   if (!position || !company) {
     throw new BadRequestError('Company and position are required');
   }
@@ -136,6 +146,7 @@ const modifyJob = async (req, res) => {
   job.type = jobType;
   job.officeLocation = officeLocation;
   job.position = position;
+  job.interviewDate = interviewDate;
   await job.save();
   res.status(StatusCodes.OK).json({ job });
 };

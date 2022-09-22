@@ -225,6 +225,7 @@ const reducer = (state, action) => {
       type: jobType,
       status: jobStatus,
       setting: jobSetting,
+      interviewDate,
     } = job;
 
     return {
@@ -237,6 +238,7 @@ const reducer = (state, action) => {
       jobType,
       jobSetting,
       jobStatus,
+      interviewDate,
     };
   }
   if (action.type === DELETE_JOB_BEGIN) {
@@ -261,8 +263,8 @@ const reducer = (state, action) => {
     return {
       ...state,
       date: action.payload,
-      search: true,
-      status: 'interview',
+      // search: true,
+      // status: 'interview',
     };
   }
   throw new Error(`no matching action ${action.type}`);
