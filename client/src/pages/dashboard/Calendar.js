@@ -20,6 +20,7 @@ const Stats = () => {
     sort,
     date,
     setFilter,
+    interviewDate,
   } = useAppContext();
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const Stats = () => {
     page,
     sort,
     date,
+    interviewDate,
   ]);
 
   // useEffect(() => {

@@ -31,6 +31,7 @@ import {
   SET_SORT,
   SET_DATE,
   CHANGE_PAGE,
+  SET_INTERVIEW_DATE,
 } from './actions';
 
 const initialState = {
@@ -217,7 +218,7 @@ const AppProvider = ({ children }) => {
   };
 
   const getJobs = async () => {
-    let url = `/jobs/?page=${state.page}&sort=${state.sort}&date=${state.date}`;
+    let url = `/jobs/?page=${state.page}&sort=${state.sort}&date=${state.date}&interviewDate=${state.interviewDate}`;
     if (state.isSearch) {
       url =
         url +
@@ -277,6 +278,9 @@ const AppProvider = ({ children }) => {
   const setDate = (date) => {
     dispatch({ type: SET_DATE, payload: date });
   };
+  const setInterviewDate = (date) => {
+    dispatch({ type: SET_INTERVIEW_DATE, payload: date });
+  };
 
   return (
     <AppContext.Provider
@@ -302,6 +306,7 @@ const AppProvider = ({ children }) => {
         setPage,
         setDate,
         setFilter,
+        setInterviewDate,
       }}
     >
       {children}

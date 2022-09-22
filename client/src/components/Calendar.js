@@ -4,13 +4,12 @@ import 'react-calendar/dist/Calendar.css';
 import { differenceInCalendarDays } from 'date-fns';
 import styled from 'styled-components/macro';
 import { useAppContext } from '../context/appContext';
-import JobsContainer from './JobsContainer';
 // const disabledDates = [tomorrow, in3Days, in5Days];
 
 const CalendarComponent = () => {
   const [value, setValue] = useState(new Date());
   //   const disabledDates = [date.setDate(date.getDate() + 1)];
-  const { date, setDate } = useAppContext();
+  const { date, setInterviewDate } = useAppContext();
 
   function isSameDay(a, b) {
     return differenceInCalendarDays(a, b) === 0;
@@ -25,7 +24,7 @@ const CalendarComponent = () => {
   }
 
   const onChange = (nextValue) => {
-    setDate(nextValue);
+    setInterviewDate(new Date(nextValue));
     setValue(nextValue);
   };
 

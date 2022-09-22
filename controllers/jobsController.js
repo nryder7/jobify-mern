@@ -32,9 +32,8 @@ const getAllJobs = async (req, res) => {
     page = 1,
     limit = 10,
     date,
+    interviewDate,
   } = req.query;
-
-  console.log(req.query);
 
   const skip = (Number(page) - 1) * Number(limit);
 
@@ -42,10 +41,20 @@ const getAllJobs = async (req, res) => {
     createdBy: req.user.userId,
   };
 
-  if (date) {
-    const firstDay = new Date(date);
+  // if (date) {
+  //   const firstDay = new Date(date);
+  //   const nextDay = new Date(firstDay.getTime() + 86400000);
+  //   queryObject.createdAt = {
+  //     $gte: firstDay,
+  //     $lte: nextDay,
+  //   };
+  // }
+
+  if (interviewDate) {
+    const firstDay = new Date(interviewDate);
     const nextDay = new Date(firstDay.getTime() + 86400000);
-    queryObject.createdAt = {
+
+    queryObject.interviewDate = {
       $gte: firstDay,
       $lte: nextDay,
     };
@@ -124,7 +133,7 @@ const modifyJob = async (req, res) => {
     position,
     interviewDate,
   } = req.body;
-  console.log(interviewDate);
+  // console.log(interviewDate);
   if (!position || !company) {
     throw new BadRequestError('Company and position are required');
   }

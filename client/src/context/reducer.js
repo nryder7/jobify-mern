@@ -28,6 +28,7 @@ import {
   HANDLE_CLEAR_FORM,
   CHANGE_PAGE,
   SET_DATE,
+  SET_INTERVIEW_DATE,
 } from './actions';
 
 const reducer = (state, action) => {
@@ -184,6 +185,7 @@ const reducer = (state, action) => {
       jobStatus: '',
       jobType: '',
       date: '',
+      interviewDate: '',
     };
   }
   if (action.type === GET_JOBS_BEGIN) {
@@ -263,6 +265,17 @@ const reducer = (state, action) => {
     return {
       ...state,
       date: action.payload,
+      // search: true,
+      // status: 'interview',
+    };
+  }
+  if (action.type === SET_INTERVIEW_DATE) {
+    console.log('hit');
+    console.log(action.payload);
+    return {
+      ...state,
+      date: '',
+      interviewDate: action.payload,
       // search: true,
       // status: 'interview',
     };
