@@ -67,7 +67,7 @@ const initialState = {
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, { ...initialState });
 
   const authFetch = axios.create({
     baseURL: '/api/v1',

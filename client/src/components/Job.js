@@ -55,24 +55,24 @@ const Job = ({
         </div>
       </div>
       <footer>
-        <div className='action'>
-          <Link
-            to='/add-job'
-            className='btn edit-btn'
-            onClick={() => setIsEditJob(id)}
-          >
-            edit
-          </Link>
-          <button
-            className='btn delete-btn'
-            type='button'
-            onClick={() => {
-              deleteJob(id);
-            }}
-          >
-            delete
-          </button>
-        </div>
+        {/* <div className='action'> */}
+        <Link
+          to='/add-job'
+          className='btn edit-btn'
+          onClick={() => setIsEditJob(id)}
+        >
+          edit
+        </Link>
+        <button
+          className='btn delete-btn'
+          type='button'
+          onClick={() => {
+            deleteJob(id);
+          }}
+        >
+          delete
+        </button>
+        {/* </div> */}
       </footer>
     </Wrapper>
   );
@@ -107,6 +107,7 @@ const Wrapper = styled.article`
     text-transform: uppercase;
     color: var(--white);
     margin-right: 2rem;
+    align-self: start;
   }
   .info {
     h5 {
@@ -132,7 +133,7 @@ const Wrapper = styled.article`
     background: #ffeeee;
   }
   .content {
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
   }
   .content-center {
     display: grid;
@@ -162,7 +163,10 @@ const Wrapper = styled.article`
   }
   footer {
     margin-top: 1rem;
+    /* margin-left: auto; */
+    margin-right: auto;
     padding-left: 1.5rem;
+    padding-right: 2.5rem;
     padding-bottom: 1.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -174,6 +178,7 @@ const Wrapper = styled.article`
     letter-spacing: var(--letterSpacing);
     cursor: pointer;
     height: 30px;
+    min-width: 150px;
   }
   .edit-btn {
     color: var(--green-dark);
