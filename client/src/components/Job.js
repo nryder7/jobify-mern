@@ -1,6 +1,12 @@
 import styled from 'styled-components/macro';
 import moment from 'moment';
-import { FaBriefcase, FaCalendarAlt, FaLocationArrow } from 'react-icons/fa';
+import {
+  FaBriefcase,
+  FaCalendarAlt,
+  FaLocationArrow,
+  FaPlusSquare,
+} from 'react-icons/fa';
+import { IoBagAddOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/appContext';
 import JobInfo from './JobInfo';
@@ -19,8 +25,13 @@ const Job = ({
 
   let date = moment(createdAt);
   date = date.format('MMM Do, YYYY');
-  let interviewDateFormat = moment(interviewDate);
-  interviewDateFormat = interviewDateFormat.format('MMM Do, YYYY');
+  let interviewDateFormat;
+
+  if (interviewDate) {
+    interviewDateFormat = moment(interviewDate);
+    interviewDateFormat = interviewDateFormat.format('MMM Do, YYYY');
+  }
+
   return (
     <Wrapper>
       <header>
@@ -35,8 +46,12 @@ const Job = ({
         <div className='content-center'>
           <JobInfo icon={<FaLocationArrow />} text={officeLocation} />
           <JobInfo icon={<FaBriefcase />} text={type} />
-          <JobInfo icon={<FaCalendarAlt />} text={date} />
-          <JobInfo icon={<FaCalendarAlt />} text={interviewDateFormat} />
+          <JobInfo icon={<FaPlusSquare />} text={date} />
+          {/* <JobInfo icon={<FaCalendarAlt />} text={date} /> */}
+
+          {interviewDate && (
+            <JobInfo icon={<FaCalendarAlt />} text={interviewDateFormat} />
+          )}
         </div>
       </div>
       <footer>
@@ -142,7 +157,7 @@ const Wrapper = styled.article`
     width: 80px;
     height: 30px;
     align-self: start;
-    margin-top: 0.75rem;
+    /* margin-top: 0.75rem; */
     margin-left: 0.5rem;
   }
   footer {
